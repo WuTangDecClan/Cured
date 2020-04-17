@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "860861833411",
+    "firebase_url": "https://cured-mobile.firebaseio.com",
+    "project_id": "cured-mobile",
+    "storage_bucket": "cured-mobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:860861833411:android:31b3da4efe66d014e90276",
+        "android_client_info": {
+          "package_name": "com.example.cured"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "860861833411-f04n8htndv9s9nfjqjkl6pn58nagt4af.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLuk4T2GSYUJ4yQdWxXJj0j_xwWKRuso0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "860861833411-f04n8htndv9s9nfjqjkl6pn58nagt4af.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
