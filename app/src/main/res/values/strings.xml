@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Cured</string>
     <string name="intro"></string>
+    <string name="password1">Forgot Password?</string>
+    <string name="signin">Sign In</string>
+    <string name="signup">Sign Up</string>
+    <string name="choice1">Login or Sign up</string>
+    Log in or Sign up with
 </resources>
