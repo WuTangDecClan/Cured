@@ -1,12 +1,11 @@
 package com.example.cured;
 
-        import android.os.Bundle;
-        import android.util.Log;
-        import android.widget.CalendarView;
-
-        import androidx.annotation.NonNull;
-        import androidx.annotation.Nullable;
-        import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.CalendarView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "CalendarActivity";
