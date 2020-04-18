@@ -1,11 +1,14 @@
 package com.example.cured;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.CalendarView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "CalendarActivity";
@@ -26,5 +29,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        if(FirebaseAuth.getInstance().getCurrentUser() == null){ // If there are no current user
+            // Go to Login view or Sign up view or some other view..
+            //FirebaseAuth.getInstance().signOut(); // This is logout method
+        }
     }
 }
