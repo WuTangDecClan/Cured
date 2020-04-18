@@ -24,7 +24,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class RegisterActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    public static final String TAG = "SignUpActivity";
+    public static final String TAG = "RegisterActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
         public void onClick(View v){
             switch(v.getId()){
                 case R.id.cirRegisterButton:
-                    signUp();
+                    Register();
                     break;
             }
         }
@@ -70,7 +70,7 @@ public class RegisterActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
     }
 
-    private void signUp(){
+    private void Register(){
         String email = ((EditText)findViewById(R.id.editTextEmail)).getText().toString();
         String password = ((EditText)findViewById(R.id.editTextPassword)).getText().toString();
 
@@ -84,7 +84,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 // Sign in success, update UI with the signed-in user's information
                                 //Log.d(TAG, "createUserWithEmail:success");
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                startToast("Sign up success");
+                                startToast("Register success");
                                 // UI
                             } else {
                                 // If sign in fails, display a message to the user.
