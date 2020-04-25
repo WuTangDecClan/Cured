@@ -22,13 +22,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
     TextView titlepage, subtitlepage, endpage;
     Button btnAddNew;
 
     DatabaseReference reference;
     RecyclerView medicine_intakes;
-    //ArrayList<MyMedicines> list;
+    ArrayList<MyMedicines> list;
     MedicineAdapter medicineAdapter;
 
     private static final String TAG = "CalendarActivity";
@@ -72,22 +74,22 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // working with data
-        //medicine_intakes = findViewById(R.id.medicine_intakes);
+        medicine_intakes = findViewById(R.id.medicine_intakes);
         medicine_intakes.setLayoutManager(new LinearLayoutManager(this));
-        //list = new ArrayList<MyMedicine>();
+       list = new ArrayList<MyMedicine>();
 
         // get data from firebase
         reference = FirebaseDatabase.getInstance().getReference().child("CuredApp");
-        //medicineAdapter = new MedicineAdapter(MainActivity.this, list);
+        medicineAdapter = new MedicineAdapter(MainActivity.this, list);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // set code to retrieve data and replace layout
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    //MyMedicine p = dataSnapshot1.getValue(MyMedicine.class);
-                    //list.add(p);
+                    MyMedicine p = dataSnapshot1.getValue(MyMedicine.class);
+                    list.add(p);
                 }
-                //medicineAdapter = new MedicineAdapter(MainActivity.this, list);
+                medicineAdapter = new MedicineAdapter(MainActivity.this, list);
                 medicine_intakes.setAdapter(medicineAdapter);
                 medicineAdapter.notifyDataSetChanged();
             }
