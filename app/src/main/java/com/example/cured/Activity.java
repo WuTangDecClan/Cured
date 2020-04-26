@@ -24,17 +24,13 @@ public class Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity);
+        setContentView(R.layout.activity);
 
         final String[] items = {"add", "delete", "update", "personal_info"};
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, items);
 
-        //ListFragment list = (ListFragment) getSupportFragmentManager().findFragmentById(R.id.drawer);
-        //list.setListAdapter(adapter);
         listview = (ListView) findViewById(R.id.drawerList);
-        Log.i("abc","put"+R.id.drawerList);
         listview.setAdapter(adapter);
-        Log.i("abc","adapter");
 
         listview.setOnItemClickListener(new ListView.OnItemClickListener() {
 

@@ -30,7 +30,8 @@
             android:layout_width="200dp"
             android:layout_height="match_parent"
             android:layout_gravity="left"
-            android:background="#FFC107"
+            android:background="#009999"
+            android:textColor="#FFFFFF"
             android:id="@+id/drawerList" />
 
     </androidx.drawerlayout.widget.DrawerLayout>
