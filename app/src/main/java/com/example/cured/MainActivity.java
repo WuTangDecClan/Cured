@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     DatabaseReference reference;
     RecyclerView medicine_intakes;
-    ArrayList<MyMedicines> list;
+    ArrayList<MyMedicine> list;
     MedicineAdapter medicineAdapter;
 
     private static final String TAG = "CalendarActivity";
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         // working with data
         medicine_intakes = findViewById(R.id.medicine_intakes);
         medicine_intakes.setLayoutManager(new LinearLayoutManager(this));
-       list = new ArrayList<MyMedicine>();
+        list = new ArrayList<MyMedicine>();
 
         // get data from firebase
         reference = FirebaseDatabase.getInstance().getReference().child("CuredApp");
