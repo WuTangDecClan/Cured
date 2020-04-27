@@ -5,31 +5,34 @@
     android:layout_width="match_parent"
     android:orientation="horizontal"
     android:layout_marginBottom="20dp"
-    android:layout_height="100dp">
+    android:layout_height="80dp"
+    android:background="@drawable/bg_medicine">
+
 
     <LinearLayout
+        android:layout_width="246dp"
+        android:layout_height="match_parent"
         android:layout_marginLeft="16dp"
-        android:orientation="vertical"
-        android:layout_width="220dp"
-        android:layout_height="match_parent">
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/medicine_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="left"
+            android:text="15:30 - 15:35"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/medicine_title"
-            android:layout_marginTop="19dp"
-            android:textSize="22sp"
-            android:textColor="#000C5D"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:text="Medicine A"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/medicine_does"
-            android:textSize="18sp"
-            android:textColor="#ADADAD"
-            android:layout_marginTop="8dp"
-            android:text="twice a week"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
 
     </LinearLayout>
 
@@ -38,16 +41,16 @@
         android:layout_width="125dp"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/medicine_time"
-            android:textSize="18sp"
-            android:textColor="#F63EA5"
-            android:layout_marginTop="8dp"
-            android:text="Tomorrow"
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
             android:gravity="right"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            />
 
     </LinearLayout>
+
+
 
 </LinearLayout>
