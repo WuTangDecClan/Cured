@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<MyMedicine> list;
     MedicineAdapter medicineAdapter;
 
-    private static final String TAG = "CalendarActivity";
+    private static final String TAG = "MainActivity";
 
     private CalendarView mCalendarView;
 
@@ -55,13 +55,13 @@ public class MainActivity extends AppCompatActivity {
             //FirebaseAuth.getInstance().signOut(); // This is logout method
         }
 
-        //btnAddNew = findViewById(R.id.btnAddNew);
 
         // import font
         Typeface MLight = Typeface.createFromAsset(getAssets(), "fonts/ML.ttf");
         Typeface MMedium = Typeface.createFromAsset(getAssets(), "fonts/MM.ttf");
 
-        // customize font
+        btnAddNew = findViewById(R.id.btnAddNew);
+
 
         btnAddNew.setTypeface(MLight);
 
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         list = new ArrayList<MyMedicine>();
 
         // get data from firebase
-        reference = FirebaseDatabase.getInstance().getReference().child("CuredApp");
+        reference = FirebaseDatabase.getInstance().getReference().child("medicines");
         medicineAdapter = new MedicineAdapter(MainActivity.this, list);
         reference.addValueEventListener(new ValueEventListener() {
             @Override

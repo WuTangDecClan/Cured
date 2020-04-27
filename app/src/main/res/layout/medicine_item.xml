@@ -32,7 +32,7 @@
             android:layout_marginTop="5dp"
             android:text="Medicine A"
             android:textColor="#FFFFFF"
-            android:textSize="22sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -45,9 +45,10 @@
             android:id="@+id/switch1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
             android:layout_weight="5"
             android:gravity="right"
-            />
+            android:textColorLink="#1AFFFFFF" />
 
     </LinearLayout>
 
