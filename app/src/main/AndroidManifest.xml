@@ -9,15 +9,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <!-- Main Activity-->
+        <activity android:name=".LoginActivity" >
             <intent-filter>
+                <!-- MAIN represents that it is the Main Activity-->
                 <action android:name="android.intent.action.MAIN" />
-
+                <!-- Launcher Denotes that it will be the first launching activity-->
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <!--Add Other activities like this-->
+        <activity android:name=".MainActivity" >
+            <!--Default Intent Filter-->
+            <intent-filter>
+                <action android:name="android.intent.action.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity android:name=".NewMedicineActivity"></activity>
+
+        <activity android:name=".RegisterActivity"></activity>
+
     </application>
 
 </manifest>

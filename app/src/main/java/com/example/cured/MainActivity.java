@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<MyMedicine> list;
     MedicineAdapter medicineAdapter;
 
+    private FirebaseAuth mAuth;
+
     private static final String TAG = "MainActivity";
 
     private CalendarView mCalendarView;
@@ -116,6 +118,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "date is :" + date);
             }
         });
+
+
         if (FirebaseAuth.getInstance().getCurrentUser() == null) { // If there are no current user
             // Go to Login view or Sign up view or some other view..
             //FirebaseAuth.getInstance().signOut(); // This is logout method
@@ -145,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
         list = new ArrayList<MyMedicine>();
 
         // get data from firebase
-        reference = FirebaseDatabase.getInstance().getReference().child("medicines");
+        reference = FirebaseDatabase.getInstance().getReference().child("CuredApp");
         medicineAdapter = new MedicineAdapter(MainActivity.this, list);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
