@@ -4,14 +4,19 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,11 +41,44 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     private CalendarView mCalendarView;
+    ListView listview = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_design);
+
+        setContentView(R.layout.activity);
+        final String[] items = {"add", "delete", "update", "personal_info"};
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.list, items);
+
+        listview = (ListView) findViewById(R.id.drawerList);
+        listview.setAdapter(adapter);
+
+        listview.setOnItemClickListener(new ListView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView parent, View v, int position, long id) {
+
+                switch (position) {
+                    case 0: // add
+                        Toast.makeText(getApplicationContext(), "add", Toast.LENGTH_LONG).show();
+                        break;
+                    case 1: // delete
+                        Toast.makeText(getApplicationContext(), "delete", Toast.LENGTH_LONG).show();
+                        break;
+                    case 2: // update
+                        Toast.makeText(getApplicationContext(), "update", Toast.LENGTH_LONG).show();
+                        break;
+                    case 3: // personal_info
+                        Toast.makeText(getApplicationContext(), "personal_info", Toast.LENGTH_LONG).show();
+                        break;
+                }
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
+                drawer.closeDrawer(Gravity.LEFT);
+            }
+        });
+
+        //setContentView(R.layout.activity_design);
         mCalendarView = (CalendarView) findViewById(R.id.calendarView);
 
         mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {

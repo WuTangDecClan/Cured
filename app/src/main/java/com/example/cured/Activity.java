@@ -37,7 +37,7 @@ public class Activity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView parent, View v, int position, long id) {
 
-                TextView contentTextview = (TextView) findViewById(R.id.drawer_content);
+                //TextView contentTextview = (TextView) findViewById(R.id.drawer_content);
 
                 switch (position) {
                     case 0: // add
