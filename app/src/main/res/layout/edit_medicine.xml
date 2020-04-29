@@ -13,12 +13,12 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorAccent"
         android:layout_height="150dp">
 
         <TextView
             android:id="@+id/titlepage"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             android:textSize="26sp"
             android:textColor="#FFF"
             android:text="Edit this medicine intake"
@@ -30,7 +30,7 @@
         <View
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorAccent"
             android:layout_height="1dp" />
 
     </LinearLayout>
@@ -38,7 +38,7 @@
     <LinearLayout
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="-60dp"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bgitemdoes"
@@ -143,11 +143,11 @@
         android:id="@+id/btnSaveChanges"
         android:layout_marginRight="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:text="Save changes"
         android:textColor="#FFF"
         android:textAllCaps="false"
-        android:background="@drawable/bgbtncreate"
+        android:background="@drawable/bg_medicine_btn"
         android:textSize="22sp"
         android:layout_width="match_parent"
         android:layout_height="55dp" />
@@ -156,6 +156,7 @@
         android:id="@+id/btnDelete"
         android:layout_marginRight="16dp"
         android:layout_marginLeft="16dp"
+        android:layout_marginTop="15dp"
         android:text="Delete"
         android:textColor="#AFAFAF"
         android:textAllCaps="false"

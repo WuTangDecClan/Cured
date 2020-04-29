@@ -1,6 +1,7 @@
 package com.example.cured;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,22 +56,22 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.MyView
                 }
             }
         });
-//        final String getMedicine_title = myMedicine.get(i).getMedicine_title();
-//        final String getMedicine_dose = myMedicine.get(i).getMedicine_dose();
-//        final String getMedicine_time = myMedicine.get(i).getMedicine_time();
-//        final String getMedicine_key = myMedicine.get(i).getMedicine_key();
-//
-//        myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent aa = new Intent(context,NewMedicineActivity.class);
-//                aa.putExtra("medicine_title", getMedicine_title);
-//                aa.putExtra("medicine_dose", getMedicine_dose);
-//                aa.putExtra("medicine_time", getMedicine_time);
-//                aa.putExtra("medicine_key", getMedicine_key);
-//                context.startActivity(aa);
-//            }
-//        });
+        final String getMedicine_title = myMedicine.get(i).getMedicine_title();
+        final String getMedicine_dose = myMedicine.get(i).getMedicine_dose();
+        final String getMedicine_time = myMedicine.get(i).getMedicine_time();
+        final String getMedicine_key = myMedicine.get(i).getMedicine_key();
+
+        myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent aa = new Intent(context,EditMedicineActivity.class);
+                aa.putExtra("medicine_title", getMedicine_title);
+                aa.putExtra("medicine_dose", getMedicine_dose);
+                aa.putExtra("medicine_time", getMedicine_time);
+                aa.putExtra("medicine_key", getMedicine_key);
+                context.startActivity(aa);
+            }
+        });
 
     }
 

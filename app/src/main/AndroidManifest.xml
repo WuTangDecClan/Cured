@@ -29,6 +29,8 @@
 
         <activity android:name=".RegisterActivity"></activity>
 
+        <activity android:name=".EditMedicineActivity"></activity>
+
     </application>
 
 </manifest>
