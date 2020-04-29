@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity);
-        final String[] items = {"add", "delete", "update", "personal_info", "LogOut","My Medicine"};
+        final String[] items = {"add", "delete", "update", "main", "LogOut","My Medicine"};
         ArrayAdapter adapter = new ArrayAdapter(this, R.layout.list, items);
 
         listview = (ListView) findViewById(R.id.drawerList);
@@ -75,8 +75,9 @@ public class MainActivity extends AppCompatActivity {
                     case 2: // update
                         Toast.makeText(getApplicationContext(), "update", Toast.LENGTH_LONG).show();
                         break;
-                    case 3: // personal_info
-                        Toast.makeText(getApplicationContext(), "personal_info", Toast.LENGTH_LONG).show();
+                    case 3: // main
+                        Intent d = new Intent(MainActivity.this, MainActivity.class);
+                        startActivity(d);
                         break;
                     case 4:
                         new AlertDialog.Builder(MainActivity.this/* 해당 액티비티를 가르킴 */)
