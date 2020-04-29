@@ -1,5 +1,6 @@
 package com.example.cured;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,6 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+
 
 public class MainActivity extends AppCompatActivity {
     TextView titlepage, subtitlepage, endpage;
@@ -43,13 +46,15 @@ public class MainActivity extends AppCompatActivity {
     private CalendarView mCalendarView;
     ListView listview = null;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity);
-        final String[] items = {"add", "delete", "update", "personal_info"};
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.list, items);
+        final String[] items = {"add", "delete", "update", "personal_info", "LogOut","My Medicine"};
+        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.list, items);
 
         listview = (ListView) findViewById(R.id.drawerList);
         listview.setAdapter(adapter);
@@ -61,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (position) {
                     case 0: // add
-                        Toast.makeText(getApplicationContext(), "add", Toast.LENGTH_LONG).show();
+                        Intent a = new Intent(MainActivity.this, NewMedicineActivity.class);
+                        startActivity(a);
                         break;
                     case 1: // delete
                         Toast.makeText(getApplicationContext(), "delete", Toast.LENGTH_LONG).show();
@@ -71,6 +77,27 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 3: // personal_info
                         Toast.makeText(getApplicationContext(), "personal_info", Toast.LENGTH_LONG).show();
+                        break;
+                    case 4:
+                        new AlertDialog.Builder(MainActivity.this/* 해당 액티비티를 가르킴 */)
+                                .setTitle("logout").setMessage("Do you want to logout?")
+                                .setPositiveButton("LogOut", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        Intent i = new Intent(MainActivity.this, LoginActivity.class);
+                                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                        startActivity(i);
+                                    }
+                                })
+                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+
+                                    }
+                                })
+                                .show();
+                        break;
+                    case 5:
+                        Intent e = new Intent(MainActivity.this, MyMedicine.class);
+                        startActivity(e);
                         break;
                 }
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);

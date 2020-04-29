@@ -13,7 +13,7 @@
         android:id="@+id/drawer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textColor="#FFF"
+        android:background="#FFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -30,7 +30,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="left"
             android:background="@color/primaryTextColor"
-            android:textSize="30sp"/>
+            />
 
     </androidx.drawerlayout.widget.DrawerLayout>
 
