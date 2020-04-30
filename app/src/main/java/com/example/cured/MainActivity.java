@@ -36,7 +36,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements callAlarm{
     TextView titlepage, subtitlepage, endpage;
-    Button btnAddNew;
+    Button btnAddNew,btnAddDiary;
 
     DatabaseReference reference;
     RecyclerView medicine_intakes;
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements callAlarm{
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity);
-        final String[] items = {"add", "delete", "update", "main", "LogOut","My Medicine"};
+        final String[] items = {"Add", "Edit", "Diary", "Main", "LogOut"};
         ArrayAdapter adapter = new ArrayAdapter(this, R.layout.list, items);
 
         listview = (ListView) findViewById(R.id.drawerList);
@@ -83,21 +83,23 @@ public class MainActivity extends AppCompatActivity implements callAlarm{
             public void onItemClick(AdapterView parent, View v, int position, long id) {
 
                 switch (position) {
-                    case 0: // add
+                    case 0: // Add
                         Intent a = new Intent(MainActivity.this, NewMedicineActivity.class);
                         startActivity(a);
                         break;
-                    case 1: // delete
-                        Toast.makeText(getApplicationContext(), "delete", Toast.LENGTH_LONG).show();
+                    case 1: // Edit
+                        Intent e = new Intent(MainActivity.this, MyMedicine.class);
+                        startActivity(e);
                         break;
-                    case 2: // update
-                        Toast.makeText(getApplicationContext(), "update", Toast.LENGTH_LONG).show();
+                    case 2: // Diary
+                        Intent b = new Intent(MainActivity.this, Diary.class);
+                        startActivity(b);
                         break;
-                    case 3: // main
+                    case 3: // Main
                         Intent d = new Intent(MainActivity.this, MainActivity.class);
                         startActivity(d);
                         break;
-                    case 4:
+                    case 4: //Logout
                         new AlertDialog.Builder(MainActivity.this)
                                 .setTitle("logout").setMessage("Do you want to logout?")
                                 .setPositiveButton("LogOut", new DialogInterface.OnClickListener() {
@@ -115,8 +117,8 @@ public class MainActivity extends AppCompatActivity implements callAlarm{
                                 .show();
                         break;
                     case 5:
-                        Intent e = new Intent(MainActivity.this, MyMedicine.class);
-                        startActivity(e);
+                        Intent m = new Intent(MainActivity.this, MyMedicine.class);
+                        startActivity(m);
                         break;
                 }
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
