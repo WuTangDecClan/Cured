@@ -35,7 +35,7 @@ public class Alarm extends BroadcastReceiver {
 
 
         NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
-        Intent nIntent = new Intent(context,NotificationActivity.class);
+        Intent nIntent = new Intent(context,MainActivity.class);
 
         nIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
 

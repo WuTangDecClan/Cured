@@ -73,7 +73,7 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.MyView
                     t = ho +":"+mi;
 
                     Log.e("time",t);
-                    mcall.call(h,m,getMedicine_title,getMedicine_dose);
+                    mcall.call(h,m,getMedicine_title,getMedicine_dose,getMedicine_key);
                 }
                 else{
 

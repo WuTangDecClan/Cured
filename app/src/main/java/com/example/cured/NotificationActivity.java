@@ -23,12 +23,13 @@ public class NotificationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         int hour=0,minute=0;
-        String dosage,title;
+        String dosage,title,key;
 
         hour=getIntent().getIntExtra("hour",0);
         minute = getIntent().getIntExtra("minute",0);
         dosage=getIntent().getStringExtra("dosage");
         title = getIntent().getStringExtra("title");
+        key = getIntent().getStringExtra("key");
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
@@ -49,13 +50,19 @@ public class NotificationActivity extends AppCompatActivity {
         editor.putLong("nextNotifyTime",(long)calendar.getTimeInMillis());
         editor.apply();
 
-        diaryNotification(calendar,hour,minute,title,dosage);
+        diaryNotification(calendar,hour,minute,title,dosage,key);
+
+        Intent home = new Intent(this,MainActivity.class);
+        startActivity(home);
 
 
     }
 
-    void diaryNotification(Calendar calendar,int hour, int minute, String title, String dosage){
+    void diaryNotification(Calendar calendar,int hour, int minute, String title, String dosage,String key){
         Boolean dailyNotify = true;
+        int k;
+
+        k = Integer.parseInt(key);
 
         PackageManager pm = this.getPackageManager();
         ComponentName receiver = new ComponentName(this,Reboot.class);
@@ -65,7 +72,7 @@ public class NotificationActivity extends AppCompatActivity {
         aIntent.putExtra("title",title);
         aIntent.putExtra("dosage",dosage);
         Log.e("aIntent",hour+title+dosage);
-        PendingIntent pIntent = PendingIntent.getBroadcast(this,0,aIntent,0);
+        PendingIntent pIntent = PendingIntent.getBroadcast(this,k,aIntent,PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager aManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
         //if everyday set
