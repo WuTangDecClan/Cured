@@ -27,8 +27,8 @@ public class Alarm extends BroadcastReceiver {
         int hour=0,minute=0;
         String dosage,title;
 
-        intent.getIntExtra("hour",hour);
-        intent.getIntExtra("minute",minute);
+        hour = intent.getIntExtra("hour",0);
+        minute = intent.getIntExtra("minute",0);
         dosage = intent.getStringExtra("dosage");
         title = intent.getStringExtra("title");
         Log.e("receive",hour+title+dosage+minute);
