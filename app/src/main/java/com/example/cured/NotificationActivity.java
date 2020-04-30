@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,10 +22,18 @@ public class NotificationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
+        int hour=0,minute=0;
+        String dosage,title;
+
+        hour=getIntent().getIntExtra("hour",0);
+        minute = getIntent().getIntExtra("minute",0);
+        dosage=getIntent().getStringExtra("dosage");
+        title = getIntent().getStringExtra("title");
+
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY,15);
-        calendar.set(Calendar.MINUTE,58);
+        calendar.set(Calendar.HOUR_OF_DAY,hour);
+        calendar.set(Calendar.MINUTE,minute);
         calendar.set(Calendar.SECOND,0);
 
         //if alredy past
@@ -33,24 +42,29 @@ public class NotificationActivity extends AppCompatActivity {
         }
 
         //check
-        Toast.makeText(getApplicationContext(),"alarm set",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),hour+":"+minute+" alarm set",Toast.LENGTH_SHORT).show();
 
         //save in Preference
         SharedPreferences.Editor editor = getSharedPreferences("daily alarm",MODE_PRIVATE).edit();
         editor.putLong("nextNotifyTime",(long)calendar.getTimeInMillis());
         editor.apply();
 
-        diaryNotification(calendar);
+        diaryNotification(calendar,hour,minute,title,dosage);
 
 
     }
 
-    void diaryNotification(Calendar calendar){
+    void diaryNotification(Calendar calendar,int hour, int minute, String title, String dosage){
         Boolean dailyNotify = true;
 
         PackageManager pm = this.getPackageManager();
         ComponentName receiver = new ComponentName(this,Reboot.class);
         Intent aIntent = new Intent(this,Alarm.class);
+        aIntent.putExtra("hour",hour);
+        aIntent.putExtra("minute",minute);
+        aIntent.putExtra("title",title);
+        aIntent.putExtra("dosage",dosage);
+        Log.e("aIntent",hour+title+dosage);
         PendingIntent pIntent = PendingIntent.getBroadcast(this,0,aIntent,0);
         AlarmManager aManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 

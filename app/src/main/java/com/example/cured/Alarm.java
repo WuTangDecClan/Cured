@@ -20,8 +20,19 @@ import static android.content.Context.MODE_PRIVATE;
 
 
 public class Alarm extends BroadcastReceiver {
+
     @Override
     public void onReceive(Context context, Intent intent){
+
+        int hour=0,minute=0;
+        String dosage,title;
+
+        intent.getIntExtra("hour",hour);
+        intent.getIntExtra("minute",minute);
+        dosage = intent.getStringExtra("dosage");
+        title = intent.getStringExtra("title");
+        Log.e("receive",hour+title+dosage+minute);
+
 
         NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
         Intent nIntent = new Intent(context,NotificationActivity.class);
@@ -50,8 +61,8 @@ public class Alarm extends BroadcastReceiver {
                     .setDefaults(NotificationCompat.DEFAULT_ALL)
                     .setWhen(System.currentTimeMillis())
                     .setTicker("{timeto}")
-                    .setContentTitle("Title")
-                    .setContentText("content")
+                    .setContentTitle(title)
+                    .setContentText(dosage)
                     .setContentInfo("Info")
                     .setContentIntent(pIntent);
 
@@ -70,7 +81,7 @@ public class Alarm extends BroadcastReceiver {
                 editor.putLong("nextNotifyTime",nextNotifyTime.getTimeInMillis());
                 editor.apply();
 
-                Toast.makeText(context.getApplicationContext(),"alarm set",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context.getApplicationContext(),hour+":"+minute+" time to"+title,Toast.LENGTH_SHORT).show();
             }
         }
 

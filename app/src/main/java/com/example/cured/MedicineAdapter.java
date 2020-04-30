@@ -51,11 +51,16 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.MyView
         //myViewHolder.medicine_dose.setText(myMedicine.get(i).getMedicine_dose());
         myViewHolder.medicine_time.setText(myMedicine.get(i).getMedicine_time());
 
+        final String getMedicine_title = myMedicine.get(i).getMedicine_title();
+        final String getMedicine_dose = myMedicine.get(i).getMedicine_dose();
+        final String getMedicine_time = myMedicine.get(i).getMedicine_time();
+        final String getMedicine_key = myMedicine.get(i).getMedicine_key();
+
         myViewHolder.switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
-                    StringTokenizer st = new StringTokenizer((String) myViewHolder.medicine_time.getText(),"::");
+                    StringTokenizer st = new StringTokenizer(getMedicine_time,"::");
                     h = Integer.parseInt(st.nextToken());
                     m = Integer.parseInt(st.nextToken());
                     if(h<10)
@@ -68,17 +73,14 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.MyView
                     t = ho +":"+mi;
 
                     Log.e("time",t);
-                    mcall.call(h,m,data);
+                    mcall.call(h,m,getMedicine_title,getMedicine_dose);
                 }
                 else{
 
                 }
             }
         });
-        final String getMedicine_title = myMedicine.get(i).getMedicine_title();
-        final String getMedicine_dose = myMedicine.get(i).getMedicine_dose();
-        final String getMedicine_time = myMedicine.get(i).getMedicine_time();
-        final String getMedicine_key = myMedicine.get(i).getMedicine_key();
+
 
         myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

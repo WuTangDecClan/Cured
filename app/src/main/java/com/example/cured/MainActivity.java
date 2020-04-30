@@ -51,9 +51,15 @@ public class MainActivity extends AppCompatActivity implements callAlarm{
     ListView listview = null;
 
     @Override
-    public void call(int hour, int minute, Intent intent){
-        Intent d = new Intent(MainActivity.this, NotificationActivity.class);
-        startActivity(d);
+    public void call(int hour, int minute, String title, String dosage){
+        Intent i = new Intent(MainActivity.this, NotificationActivity.class);
+        i.putExtra("hour",hour);
+        i.putExtra("minute",minute);
+        i.putExtra("title",title);
+        i.putExtra("dosage",dosage);
+        Log.e("iIntent",hour+title+dosage+minute);
+
+        startActivity(i);
     }
 
 
