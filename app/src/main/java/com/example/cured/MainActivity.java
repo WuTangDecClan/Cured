@@ -35,9 +35,8 @@ import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity implements callAlarm{
-
+    TextView titlepage, subtitlepage, endpage;
     Button btnAddNew;
-    Button btnAddDiary;
 
     DatabaseReference reference;
     RecyclerView medicine_intakes;
@@ -63,6 +62,9 @@ public class MainActivity extends AppCompatActivity implements callAlarm{
 
         startActivity(i);
     }
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -193,9 +195,11 @@ public class MainActivity extends AppCompatActivity implements callAlarm{
                 // set code to show an error
                 Toast.makeText(getApplicationContext(), "No Data", Toast.LENGTH_SHORT).show();
             }
-
         });
     }
+
+
+
 }
 
 // SPLASH SCREEN CODE
