@@ -35,8 +35,9 @@ import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity implements callAlarm{
-    TextView titlepage, subtitlepage, endpage;
+
     Button btnAddNew;
+    Button btnAddDiary;
 
     DatabaseReference reference;
     RecyclerView medicine_intakes;
@@ -62,9 +63,6 @@ public class MainActivity extends AppCompatActivity implements callAlarm{
 
         startActivity(i);
     }
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,15 +145,24 @@ public class MainActivity extends AppCompatActivity implements callAlarm{
         Typeface MMedium = Typeface.createFromAsset(getAssets(), "fonts/MM.ttf");
 
         btnAddNew = findViewById(R.id.btnAddNew);
-
+        btnAddDiary = findViewById(R.id.btnAddDiary);
 
         btnAddNew.setTypeface(MLight);
+        btnAddDiary.setTypeface(MLight);
 
         btnAddNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent a = new Intent(MainActivity.this, NewMedicineActivity.class);
                 startActivity(a);
+            }
+        });
+
+        btnAddDiary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent b = new Intent(MainActivity.this, Diary.class);
+                startActivity(b);
             }
         });
 
@@ -186,11 +193,9 @@ public class MainActivity extends AppCompatActivity implements callAlarm{
                 // set code to show an error
                 Toast.makeText(getApplicationContext(), "No Data", Toast.LENGTH_SHORT).show();
             }
+
         });
     }
-
-
-
 }
 
 // SPLASH SCREEN CODE

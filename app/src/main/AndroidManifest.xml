@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.cured">
 
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -12,42 +12,37 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!-- Main Activity-->
-        <activity android:name=".LoginActivity" >
+        <activity android:name=".Diary"></activity>
+        <!-- Main Activity -->
+        <activity android:name=".LoginActivity">
             <intent-filter>
-                <!-- MAIN represents that it is the Main Activity-->
+
+                <!-- MAIN represents that it is the Main Activity -->
                 <action android:name="android.intent.action.MAIN" />
-                <!-- Launcher Denotes that it will be the first launching activity-->
+                <!-- Launcher Denotes that it will be the first launching activity -->
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <!--Add Other activities like this-->
-        <activity android:name=".MainActivity" >
-            <!--Default Intent Filter-->
+        </activity> <!-- Add Other activities like this -->
+        <activity android:name=".MainActivity">
+
+            <!-- Default Intent Filter -->
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
-
             </intent-filter>
         </activity>
-        <activity android:name=".NewMedicineActivity"></activity>
+        <activity android:name=".NewMedicineActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".EditMedicineActivity" />
+        <activity android:name=".NotificationActivity"></activity>
 
-        <activity android:name=".RegisterActivity"></activity>
-
-        <activity android:name=".EditMedicineActivity"></activity>
-
-        <activity android:name=".NotificationActivity">
-
-        </activity>
-        
-        <receiver android:name=".Reboot"
+        <receiver
+            android:name=".Reboot"
             android:enabled="false">
             <intent-filter>
-                <action android:name="android:intent.action.BOOT_COMPLETED"/>
+                <action android:name="android:intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-
-        <receiver android:name=".Alarm"/>
-
+        <receiver android:name=".Alarm" />
     </application>
 
 </manifest>
