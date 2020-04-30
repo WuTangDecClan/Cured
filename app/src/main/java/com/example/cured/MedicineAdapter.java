@@ -24,20 +24,19 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.MyView
     Context context;
     ArrayList<MyMedicine> myMedicine;
     int h,m;
+
     String ho,mi;
     String t;
-    Intent data;
+
 
     private callAlarm mcall;
-
-
+    public static final String PREF = "SWITCH";
 
     public MedicineAdapter(Context c, ArrayList<MyMedicine> p,callAlarm a) {
         context = c;
         myMedicine = p;
         mcall = a;
     }
-
 
     @NonNull
     @Override
@@ -55,10 +54,16 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.MyView
         final String getMedicine_dose = myMedicine.get(i).getMedicine_dose();
         final String getMedicine_time = myMedicine.get(i).getMedicine_time();
         final String getMedicine_key = myMedicine.get(i).getMedicine_key();
+        final String skey = "KK"+getMedicine_key;
+
+        SharedPreferences sp = context.getSharedPreferences(PREF,0);
+        boolean sw = sp.getBoolean(skey,false);
+        myViewHolder.switch1.setChecked(sw);
 
         myViewHolder.switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
                 if (isChecked){
                     StringTokenizer st = new StringTokenizer(getMedicine_time,"::");
                     h = Integer.parseInt(st.nextToken());
@@ -78,7 +83,13 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.MyView
                 else{
 
                 }
+                SharedPreferences sp = context.getSharedPreferences(PREF,0);
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putBoolean(skey,isChecked);
+                editor.commit();
             }
+
+
         });
 
 
@@ -93,6 +104,8 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.MyView
                 context.startActivity(aa);
             }
         });
+
+
 
     }
 
