@@ -1,5 +1,7 @@
 package com.example.cured;
 
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -32,7 +34,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements callAlarm{
     TextView titlepage, subtitlepage, endpage;
     Button btnAddNew;
 
@@ -47,6 +49,13 @@ public class MainActivity extends AppCompatActivity {
 
     private CalendarView mCalendarView;
     ListView listview = null;
+
+    @Override
+    public void call(int hour, int minute, Intent intent){
+        Intent d = new Intent(MainActivity.this, NotificationActivity.class);
+        startActivity(d);
+    }
+
 
 
 
@@ -82,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(d);
                         break;
                     case 4:
-                        new AlertDialog.Builder(MainActivity.this/* 해당 액티비티를 가르킴 */)
+                        new AlertDialog.Builder(MainActivity.this)
                                 .setTitle("logout").setMessage("Do you want to logout?")
                                 .setPositiveButton("LogOut", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int whichButton) {
@@ -150,7 +159,8 @@ public class MainActivity extends AppCompatActivity {
 
         // get data from firebase
         reference = FirebaseDatabase.getInstance().getReference().child("CuredApp");
-        medicineAdapter = new MedicineAdapter(MainActivity.this, list);
+        medicineAdapter = new MedicineAdapter(MainActivity.this, list, this);
+         final callAlarm a = this;
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -159,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
                     MyMedicine p = dataSnapshot1.getValue(MyMedicine.class);
                     list.add(p);
                 }
-                medicineAdapter = new MedicineAdapter(MainActivity.this, list);
+                medicineAdapter = new MedicineAdapter(MainActivity.this, list,a);
                 medicine_intakes.setAdapter(medicineAdapter);
                 medicineAdapter.notifyDataSetChanged();
             }
@@ -171,6 +181,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
 }
 
 // SPLASH SCREEN CODE

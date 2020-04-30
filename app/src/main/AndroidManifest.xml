@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.cured">
 
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -23,6 +26,7 @@
             <!--Default Intent Filter-->
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
+
             </intent-filter>
         </activity>
         <activity android:name=".NewMedicineActivity"></activity>
@@ -30,6 +34,19 @@
         <activity android:name=".RegisterActivity"></activity>
 
         <activity android:name=".EditMedicineActivity"></activity>
+
+        <activity android:name=".NotificationActivity">
+
+        </activity>
+        
+        <receiver android:name=".Reboot"
+            android:enabled="false">
+            <intent-filter>
+                <action android:name="android:intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".Alarm"/>
 
     </application>
 

@@ -1,7 +1,10 @@
 package com.example.cured;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,15 +19,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
+
 public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.MyViewHolder>{
     Context context;
     ArrayList<MyMedicine> myMedicine;
     int h,m;
+    String ho,mi;
     String t;
+    Intent data;
 
-    public MedicineAdapter(Context c, ArrayList<MyMedicine> p) {
+    private callAlarm mcall;
+
+
+
+    public MedicineAdapter(Context c, ArrayList<MyMedicine> p,callAlarm a) {
         context = c;
         myMedicine = p;
+        mcall = a;
     }
 
 
@@ -47,9 +58,17 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.MyView
                     StringTokenizer st = new StringTokenizer((String) myViewHolder.medicine_time.getText(),"::");
                     h = Integer.parseInt(st.nextToken());
                     m = Integer.parseInt(st.nextToken());
-                    t=Integer.toString(h)+" : "+Integer.toString(m);
+                    if(h<10)
+                        ho = "0" + Integer.toString(h);
+                    else ho = Integer.toString(h);
+                    if(m<10)
+                        mi = "0" + Integer.toString(m);
+                    else
+                        mi = Integer.toString(m);
+                    t = ho +":"+mi;
 
                     Log.e("time",t);
+                    mcall.call(h,m,data);
                 }
                 else{
 
@@ -93,4 +112,6 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.MyView
             switch1 = (Switch) itemView.findViewById(R.id.switch1);
         }
     }
+
+
 }
