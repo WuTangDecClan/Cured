@@ -37,6 +37,13 @@ public class LoginActivity extends AppCompatActivity {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) { // If there are current user
+            // Go to Main view
+            //FirebaseAuth.getInstance().signOut(); // This is logout method
+            startMainActivity();
+            Log.i("msg", "User email:" + FirebaseAuth.getInstance().getCurrentUser().getEmail());
+        }
+
     }
     View.OnClickListener onClickListener = new View.OnClickListener(){
         @Override
