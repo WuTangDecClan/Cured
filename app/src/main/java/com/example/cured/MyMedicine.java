@@ -1,17 +1,18 @@
 package com.example.cured;
 
 public class MyMedicine {
-    String medicine_title, medicine_dose, medicine_time, medicine_key;
+    String medicine_title, medicine_dose, medicine_time, medicine_key, medicine_uid;
 
     public MyMedicine(){
 
     }
 
-    public MyMedicine(String medicine_title, String medicine_dose, String medicine_time, String medicine_key) {
+    public MyMedicine(String medicine_title, String medicine_dose, String medicine_time, String medicine_key, String medicine_uid) {
         this.medicine_title = medicine_title;
         this.medicine_dose = medicine_dose;
         this.medicine_time = medicine_time;
         this.medicine_key = medicine_key;
+        this.medicine_uid = medicine_uid;
     }
 
     public String getMedicine_key() {
@@ -44,5 +45,13 @@ public class MyMedicine {
 
     public void setMedicine_time(String medicine_time) {
         this.medicine_time = medicine_time;
+    }
+
+    public String getMedicine_uid() {
+        return medicine_uid;
+    }
+
+    public void setMedicine_uid(String medicine_uid) {
+        this.medicine_uid = medicine_uid;
     }
 }

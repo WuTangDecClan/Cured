@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,6 +26,7 @@ public class NewMedicineActivity  extends AppCompatActivity{
     DatabaseReference reference;
     Integer medicineNum = new Random().nextInt();
     String medicine_key = Integer.toString(medicineNum);
+    String medicine_uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +60,7 @@ public class NewMedicineActivity  extends AppCompatActivity{
                         dataSnapshot.getRef().child("medicine_dose").setValue(medicine_dose.getText().toString());
                         dataSnapshot.getRef().child("medicine_time").setValue(medicine_time.getText().toString());
                         dataSnapshot.getRef().child("medicine_key").setValue(medicine_key);
+                        dataSnapshot.getRef().child("medicine_uid").setValue(medicine_uid);
 
                         Intent a = new Intent(NewMedicineActivity.this,MainActivity.class);
                         startActivity(a);

@@ -70,6 +70,12 @@ public class MainActivity extends AppCompatActivity implements callAlarm{
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity);
+
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) { // If there are no current user
+            // Go to Login view
+            startLoginActivity();
+        }
+
         final String[] items = {"Add", "Edit", "Diary", "Main", "LogOut"};
         ArrayAdapter adapter = new ArrayAdapter(this, R.layout.list, items);
 
@@ -103,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements callAlarm{
                                 .setTitle("logout").setMessage("Do you want to logout?")
                                 .setPositiveButton("LogOut", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int whichButton) {
+                                        FirebaseAuth.getInstance().signOut(); // Firebase signOut
                                         Intent i = new Intent(MainActivity.this, LoginActivity.class);
                                         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
                                         startActivity(i);
@@ -137,12 +144,6 @@ public class MainActivity extends AppCompatActivity implements callAlarm{
         });
 
 
-        if (FirebaseAuth.getInstance().getCurrentUser() == null) { // If there are no current user
-            // Go to Login view or Sign up view or some other view..
-            //FirebaseAuth.getInstance().signOut(); // This is logout method
-        }
-
-
         // import font
         Typeface MLight = Typeface.createFromAsset(getAssets(), "fonts/ML.ttf");
         Typeface MMedium = Typeface.createFromAsset(getAssets(), "fonts/MM.ttf");
@@ -175,7 +176,10 @@ public class MainActivity extends AppCompatActivity implements callAlarm{
                 // set code to retrieve data and replace layout
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     MyMedicine p = dataSnapshot1.getValue(MyMedicine.class);
-                    list.add(p);
+                    if(p.medicine_uid != null) { // Each user can see their own medicine only.
+                        if (p.medicine_uid.equals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
+                            list.add(p);
+                    }
                 }
                 medicineAdapter = new MedicineAdapter(MainActivity.this, list,a);
                 medicine_intakes.setAdapter(medicineAdapter);
@@ -190,7 +194,10 @@ public class MainActivity extends AppCompatActivity implements callAlarm{
         });
     }
 
-
+    private void startLoginActivity(){
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
 
 }
 
