@@ -13,7 +13,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Diary"></activity>
         <!-- Main Activity -->
         <activity android:name=".LoginActivity">
             <intent-filter>
@@ -34,7 +33,7 @@
         <activity android:name=".NewMedicineActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".EditMedicineActivity" />
-        <activity android:name=".Dairy" />
+        <activity android:name=".DiaryActivity" />
         <activity android:name=".NotificationActivity"></activity>
 
         <receiver

@@ -24,7 +24,7 @@
             android:layout_height="wrap_content" />
 
         <TextView
-            android:id="@+id/diary_dose"
+            android:id="@+id/diary_desc"
             android:layout_marginTop="8dp"
             android:textSize="18sp"
             android:textColor="#ADADAD"
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content" >
 
         <TextView
-            android:id="@+id/diary_time"
+            android:id="@+id/diary_date"
             android:layout_marginTop="8dp"
             android:textSize="18sp"
             android:textColor="#F63EA5"

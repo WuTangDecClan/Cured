@@ -1,8 +1,6 @@
 package com.example.cured;
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,9 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cured.DiaryAdapter;
-import com.example.cured.MyDiary;
-import com.example.cured.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,7 +35,7 @@ public class DiaryActivity extends AppCompatActivity {
         subtitlepage = findViewById(R.id.subtitlepage);
         endpage = findViewById(R.id.endpage);
 
-        btnAddDiary = findViewById(R.id.btnAddNew);
+        btnAddDiary = findViewById(R.id.btnAddDiary);
 
         // import font
         Typeface MLight = Typeface.createFromAsset(getAssets(), "fonts/ML.ttf");
@@ -64,7 +59,7 @@ public class DiaryActivity extends AppCompatActivity {
 
 
         // working with data
-        diary_entries = findViewById(R.id.diary_entries;
+        diary_entries = findViewById(R.id.diary_entries);
         diary_entries.setLayoutManager(new LinearLayoutManager(this));
         list = new ArrayList<MyDiary>();
 
