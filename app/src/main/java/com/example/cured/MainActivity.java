@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements callAlarm{
         i.putExtra("title",title);
         i.putExtra("dosage",dosage);
         i.putExtra("key",key);
+        i.putExtra("cancel",false);
         Log.e("iIntent",hour+title+dosage+minute+key);
 
         startActivity(i);

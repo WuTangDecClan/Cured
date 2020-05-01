@@ -15,6 +15,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Calendar;
+import java.util.Map;
+import java.util.Set;
 
 public class NotificationActivity extends AppCompatActivity {
 
@@ -24,12 +26,15 @@ public class NotificationActivity extends AppCompatActivity {
 
         int hour=0,minute=0;
         String dosage,title,key;
+        Boolean cancel=false;
 
         hour=getIntent().getIntExtra("hour",0);
         minute = getIntent().getIntExtra("minute",0);
         dosage=getIntent().getStringExtra("dosage");
         title = getIntent().getStringExtra("title");
         key = getIntent().getStringExtra("key");
+        cancel = getIntent().getBooleanExtra("cancel",false);
+
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
@@ -45,12 +50,28 @@ public class NotificationActivity extends AppCompatActivity {
         //check
         Toast.makeText(getApplicationContext(),hour+":"+minute+" alarm set",Toast.LENGTH_SHORT).show();
 
-        //save in Preference
-        SharedPreferences.Editor editor = getSharedPreferences("daily alarm",MODE_PRIVATE).edit();
-        editor.putLong("nextNotifyTime",(long)calendar.getTimeInMillis());
-        editor.apply();
+        if(!cancel){
+            //save in Preference
+            SharedPreferences.Editor editor = getSharedPreferences("daily alarm",MODE_PRIVATE).edit();
+            editor.putLong(key,(long)calendar.getTimeInMillis());
+            editor.apply();
+        }
+        else{
+            SharedPreferences.Editor editor = getSharedPreferences("daily alarm",MODE_PRIVATE).edit();
+            editor.remove(key);
+            editor.apply();
 
-        diaryNotification(calendar,hour,minute,title,dosage,key);
+            SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("daily alarm",Context.MODE_PRIVATE);
+            Map<String, ?> allD = sharedPreferences.getAll();
+            Set<String> set = allD.keySet();
+            for(String s : set){
+                Log.e("alarm",allD.get(s).getClass().getSimpleName()+":"+allD.get(s).toString());
+            }
+        }
+
+
+
+        diaryNotification(calendar,hour,minute,title,dosage,key,cancel);
 
         Intent home = new Intent(this,MainActivity.class);
         startActivity(home);
@@ -58,7 +79,7 @@ public class NotificationActivity extends AppCompatActivity {
 
     }
 
-    void diaryNotification(Calendar calendar,int hour, int minute, String title, String dosage,String key){
+    void diaryNotification(Calendar calendar,int hour, int minute, String title, String dosage,String key,Boolean cancel){
         Boolean dailyNotify = true;
         int k;
 
@@ -80,10 +101,18 @@ public class NotificationActivity extends AppCompatActivity {
         if(dailyNotify){
             if(aManager!=null){
                 aManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pIntent);
-
-                if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
-                    aManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),pIntent);
+                if(cancel){
+                    aManager.cancel(pIntent);
+                    Intent ni = new Intent(getApplicationContext(),MainActivity.class);
+                    startActivity(ni);
                 }
+                else{
+                    if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+                        aManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),pIntent);
+                    }
+                }
+
+
             }
 
             //after boot
