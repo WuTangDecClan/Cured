@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements callAlarm{
         list = new ArrayList<MyMedicine>();
 
         // get data from firebase
-        reference = FirebaseDatabase.getInstance().getReference().child("CuredApp");
+        reference = FirebaseDatabase.getInstance().getReference().child("DiaryApp");
         medicineAdapter = new MedicineAdapter(MainActivity.this, list, this);
          final callAlarm a = this;
         reference.addValueEventListener(new ValueEventListener() {

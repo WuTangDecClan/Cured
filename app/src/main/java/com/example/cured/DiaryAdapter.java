@@ -46,9 +46,9 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.MyViewHolder
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            titlediary = (TextView) itemView.findViewById(R.id.titlediary);
-            descdiary = (TextView) itemView.findViewById(R.id.descdiary);
-            datediary = (TextView) itemView.findViewById(R.id.datediary);
+            titlediary = (TextView) itemView.findViewById(R.id.diary_title);
+            descdiary = (TextView) itemView.findViewById(R.id.diary_dose);
+            datediary = (TextView) itemView.findViewById(R.id.diary_time);
         }
     }
 }
