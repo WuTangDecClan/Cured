@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements callAlarm{
     RecyclerView medicine_intakes;
     ArrayList<MyMedicine> list;
     MedicineAdapter medicineAdapter;
+    Navigation navigation;
 
     private FirebaseAuth mAuth;
 
@@ -80,57 +81,10 @@ public class MainActivity extends AppCompatActivity implements callAlarm{
         ArrayAdapter adapter = new ArrayAdapter(this, R.layout.list, items);
 
         listview = (ListView) findViewById(R.id.drawerList);
-        listview.setAdapter(adapter);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
+        navigation = new Navigation(this,listview,drawer);
+        navigation.setN();
 
-        listview.setOnItemClickListener(new ListView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView parent, View v, int position, long id) {
-
-                switch (position) {
-                    case 0: // Add
-                        Intent a = new Intent(MainActivity.this, NewMedicineActivity.class);
-                        startActivity(a);
-                        break;
-                    case 1: // Edit
-                        Intent e = new Intent(MainActivity.this, MyMedicine.class);
-                        startActivity(e);
-                        break;
-                    case 2: // Diary
-                        Intent b = new Intent(MainActivity.this, DiaryActivity.class);
-                        startActivity(b);
-                        break;
-                    case 3: // Main
-                        Intent d = new Intent(MainActivity.this, MainActivity.class);
-                        startActivity(d);
-                        break;
-                    case 4: //Logout
-                        new AlertDialog.Builder(MainActivity.this)
-                                .setTitle("logout").setMessage("Do you want to logout?")
-                                .setPositiveButton("LogOut", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int whichButton) {
-                                        FirebaseAuth.getInstance().signOut(); // Firebase signOut
-                                        Intent i = new Intent(MainActivity.this, LoginActivity.class);
-                                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                        startActivity(i);
-                                    }
-                                })
-                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int whichButton) {
-
-                                    }
-                                })
-                                .show();
-                        break;
-                    case 5:
-                        Intent m = new Intent(MainActivity.this, MyMedicine.class);
-                        startActivity(m);
-                        break;
-                }
-                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
-                drawer.closeDrawer(Gravity.LEFT);
-            }
-        });
 
         //setContentView(R.layout.activity_design);
         mCalendarView = (CalendarView) findViewById(R.id.calendarView);
@@ -142,6 +96,12 @@ public class MainActivity extends AppCompatActivity implements callAlarm{
                 Log.d(TAG, "date is :" + date);
             }
         });
+
+
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) { // If there are no current user
+            // Go to Login view or Sign up view or some other view..
+            //FirebaseAuth.getInstance().signOut(); // This is logout method
+        }
 
 
         // import font

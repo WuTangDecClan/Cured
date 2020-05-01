@@ -5,10 +5,12 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,10 +31,17 @@ public class DiaryActivity extends AppCompatActivity {
     ArrayList<MyDiary> list;
     DiaryAdapter diaryAdapter;
 
+    ListView listview = null;
+    Navigation navigation = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_diary);
+        setContentView(R.layout.diary_with_nbar);
+        listview = (ListView) findViewById(R.id.drawerList);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
+        navigation = new Navigation(this,listview,drawer);
+        navigation.setN();
 
         titlepage = findViewById(R.id.titlepage);
         subtitlepage = findViewById(R.id.subtitlepage);
