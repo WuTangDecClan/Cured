@@ -29,9 +29,9 @@
                 <TextView
                     android:id="@+id/titlepage"
                     android:layout_marginTop="60dp"
-                    android:textSize="32sp"
+                    android:textSize="28sp"
                     android:textColor="#FFF"
-                    android:text="My tasks"
+                    android:text="Health diary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -40,7 +40,7 @@
                     android:textSize="18sp"
                     android:textColor="#4A4E6A"
                     android:layout_marginTop="8dp"
-                    android:text="Finish Them Quickly Today"
+                    android:text="How are you feeling today?"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
