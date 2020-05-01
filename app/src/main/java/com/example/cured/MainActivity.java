@@ -1,7 +1,5 @@
 package com.example.cured;
 
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -58,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements callAlarm{
         i.putExtra("title",title);
         i.putExtra("dosage",dosage);
         i.putExtra("key",key);
+        i.putExtra("cancel",false);
         Log.e("iIntent",hour+title+dosage+minute+key);
 
         startActivity(i);
@@ -92,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements callAlarm{
                         startActivity(e);
                         break;
                     case 2: // Diary
-                        Intent b = new Intent(MainActivity.this, Diary.class);
+                        Intent b = new Intent(MainActivity.this, DiaryActivity.class);
                         startActivity(b);
                         break;
                     case 3: // Main
@@ -149,24 +148,15 @@ public class MainActivity extends AppCompatActivity implements callAlarm{
         Typeface MMedium = Typeface.createFromAsset(getAssets(), "fonts/MM.ttf");
 
         btnAddNew = findViewById(R.id.btnAddNew);
-        btnAddDiary = findViewById(R.id.btnAddDiary);
 
         btnAddNew.setTypeface(MLight);
-        btnAddDiary.setTypeface(MLight);
+
 
         btnAddNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent a = new Intent(MainActivity.this, NewMedicineActivity.class);
                 startActivity(a);
-            }
-        });
-
-        btnAddDiary.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent b = new Intent(MainActivity.this, Diary.class);
-                startActivity(b);
             }
         });
 

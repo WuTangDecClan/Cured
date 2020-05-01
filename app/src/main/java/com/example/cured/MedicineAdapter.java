@@ -1,7 +1,5 @@
 package com.example.cured;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -81,6 +79,10 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.MyView
                     mcall.call(h,m,getMedicine_title,getMedicine_dose,getMedicine_key);
                 }
                 else{
+                    Intent c = new Intent(context,NotificationActivity.class);
+                    c.putExtra("cancel",true);
+                    c.putExtra("key",getMedicine_key);
+                    context.startActivity(c);
 
                 }
                 SharedPreferences sp = context.getSharedPreferences(PREF,0);
@@ -96,6 +98,7 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.MyView
         myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                myViewHolder.switch1.setChecked(false);
                 Intent aa = new Intent(context,EditMedicineActivity.class);
                 aa.putExtra("medicine_title", getMedicine_title);
                 aa.putExtra("medicine_dose", getMedicine_dose);

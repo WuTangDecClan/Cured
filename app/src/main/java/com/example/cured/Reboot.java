@@ -6,11 +6,14 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 public class Reboot extends BroadcastReceiver {
     @Override
@@ -24,11 +27,15 @@ public class Reboot extends BroadcastReceiver {
             AlarmManager aManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
             SharedPreferences sharedPreferences = context.getSharedPreferences("daily alarm",Context.MODE_PRIVATE);
-            long millis = sharedPreferences.getLong("nextNotify", Calendar.getInstance().getTimeInMillis());
+            Map<String, ?> allD = sharedPreferences.getAll();
+                Set<String> set = allD.keySet();
+                for(String s : set){
+                    Log.e("alarm",allD.get(s).getClass().getSimpleName()+":"+allD.get(s).toString());
+                }
 
             Calendar current = Calendar.getInstance();
             Calendar nextNotifyTime = new GregorianCalendar();
-            nextNotifyTime.setTimeInMillis(sharedPreferences.getLong("nextNotifyTime",millis));
+            nextNotifyTime.setTimeInMillis(sharedPreferences.getLong("nextNotifyTime",0));
 
             if(current.after(nextNotifyTime)){
                 nextNotifyTime.add(Calendar.DATE,1);
