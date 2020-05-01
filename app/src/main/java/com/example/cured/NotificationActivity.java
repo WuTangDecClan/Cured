@@ -100,6 +100,7 @@ public class NotificationActivity extends AppCompatActivity {
         //if everyday set
         if(dailyNotify){
             if(aManager!=null){
+                aManager.set(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),pIntent);
                 aManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pIntent);
                 if(cancel){
                     aManager.cancel(pIntent);

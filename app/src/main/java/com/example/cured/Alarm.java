@@ -9,7 +9,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Build;
+import android.os.PowerManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -64,6 +67,7 @@ public class Alarm extends BroadcastReceiver {
             channel.setVibrationPattern(new long[]{100,200,100,200});
             channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
 
+
             if(notificationManager!=null){
                 notificationManager.createNotificationChannel(channel);
             }else builder.setSmallIcon(R.mipmap.ic_launcher);
@@ -81,6 +85,11 @@ public class Alarm extends BroadcastReceiver {
 
 
             if(notificationManager!=null){
+                //if lock screen
+                PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+                PowerManager.WakeLock wakeLock = powerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK|PowerManager.ACQUIRE_CAUSES_WAKEUP|PowerManager.ON_AFTER_RELEASE,"my:Tag");
+                wakeLock.acquire();
+
                 //run notification
                 notificationManager.notify(key,builder.build());
 
