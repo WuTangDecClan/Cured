@@ -24,11 +24,12 @@ public class Alarm extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent){
 
-        int hour=0,minute=0;
+        int hour=0,minute=0,key;
         String dosage,title;
 
         hour = intent.getIntExtra("hour",0);
         minute = intent.getIntExtra("minute",0);
+        key = intent.getIntExtra("key",0);
         dosage = intent.getStringExtra("dosage");
         title = intent.getStringExtra("title");
         Log.e("receive",hour+title+dosage+minute);
@@ -39,7 +40,7 @@ public class Alarm extends BroadcastReceiver {
 
         nIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
-        PendingIntent pIntent = PendingIntent.getActivity(context,0,nIntent,0);
+        PendingIntent pIntent = PendingIntent.getActivity(context,key,nIntent,0);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context,"default");
 
@@ -57,7 +58,8 @@ public class Alarm extends BroadcastReceiver {
                 notificationManager.createNotificationChannel(channel);
             }else builder.setSmallIcon(R.mipmap.ic_launcher);
 
-            builder.setAutoCancel(true)
+            builder.setAutoCancel(false)
+                    .setFullScreenIntent(pIntent,true)
                     .setDefaults(NotificationCompat.DEFAULT_ALL)
                     .setWhen(System.currentTimeMillis())
                     .setTicker("{timeto}")
@@ -69,7 +71,7 @@ public class Alarm extends BroadcastReceiver {
 
             if(notificationManager!=null){
                 //run notification
-                notificationManager.notify(1234,builder.build());
+                notificationManager.notify(key,builder.build());
 
                 Calendar nextNotifyTime = Calendar.getInstance();
 

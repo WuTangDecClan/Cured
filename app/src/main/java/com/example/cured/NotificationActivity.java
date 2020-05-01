@@ -71,6 +71,7 @@ public class NotificationActivity extends AppCompatActivity {
         aIntent.putExtra("minute",minute);
         aIntent.putExtra("title",title);
         aIntent.putExtra("dosage",dosage);
+        aIntent.putExtra("key",k);
         Log.e("aIntent",hour+title+dosage);
         PendingIntent pIntent = PendingIntent.getBroadcast(this,k,aIntent,PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager aManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
