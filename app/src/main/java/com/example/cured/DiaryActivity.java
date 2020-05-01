@@ -1,6 +1,9 @@
 package com.example.cured;
+
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,13 +52,13 @@ public class DiaryActivity extends AppCompatActivity {
         btnAddDiary.setTypeface(MLight);
 
         //Button to add diary starts new activity
-//        btnAddDiary.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent a = new Intent(MainActivity.this,NewTodoActivity.class);
-//                startActivity(a);
-//            }
-//        });
+        btnAddDiary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(DiaryActivity.this,NewDiaryActivity.class);
+                startActivity(a);
+            }
+        });
 
 
         // working with data

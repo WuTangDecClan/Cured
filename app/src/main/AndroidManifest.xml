@@ -35,6 +35,7 @@
         <activity android:name=".EditMedicineActivity" />
         <activity android:name=".DiaryActivity" />
         <activity android:name=".NotificationActivity"></activity>
+        <activity android:name=".NewDiaryActivity"></activity>
 
         <receiver
             android:name=".Reboot"
