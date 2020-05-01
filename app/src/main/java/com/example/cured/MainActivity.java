@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements callAlarm{
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
         navigation = new Navigation(this,listview,drawer);
         navigation.setN();
+        
 
 
         //setContentView(R.layout.activity_design);
