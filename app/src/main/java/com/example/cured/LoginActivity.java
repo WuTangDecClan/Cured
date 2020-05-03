@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
 
-        if (FirebaseAuth.getInstance().getCurrentUser() != null || isLoggedIn) { // If there are current user
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) { // If there are current user
             // Go to Main view
             //FirebaseAuth.getInstance().signOut(); // This is logout method
             startMainActivity();
