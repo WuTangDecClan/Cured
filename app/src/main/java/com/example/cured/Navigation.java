@@ -36,7 +36,7 @@ public class Navigation  {
 
    public void setN(){
 
-        final String[] items = {"Add", "Edit", "Diary", "Main", "LogOut"};
+        final String[] items = {"Main", "New Medicine", "Diary list", "New Diary", "LogOut"};
         ArrayAdapter adapter = new ArrayAdapter(context, R.layout.list, items);
 
         listview.setAdapter(adapter);
@@ -47,21 +47,21 @@ public class Navigation  {
            public void onItemClick(AdapterView parent, View v, int position, long id) {
 
                switch (position) {
-                   case 0: // Add
+                   case 0: // Main
+                       Intent d = new Intent(context, MainActivity.class);
+                       context.startActivity(d);
+                       break;
+                   case 1: // Add
                        Intent a = new Intent(context, NewMedicineActivity.class);
                        context.startActivity(a);
-                       break;
-                   case 1: // Edit
-                       Intent e = new Intent(context, MyMedicine.class);
-                       context.startActivity(e);
                        break;
                    case 2: // Diary
                        Intent b = new Intent(context, DiaryActivity.class);
                        context.startActivity(b);
                        break;
-                   case 3: // Main
-                       Intent d = new Intent(context, MainActivity.class);
-                       context.startActivity(d);
+                   case 3: // New Diary
+                       Intent n = new Intent(context, NewDiaryActivity.class);
+                       context.startActivity(n);
                        break;
                    case 4: //Logout
                        new AlertDialog.Builder(context)
