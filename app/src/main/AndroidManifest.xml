@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT"/>
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!-- Main Activity -->
+        <activity android:name=".InstructionActivity"></activity>
+        <activity
+            android:name=".InstructionsActivity"
+            android:label="@string/title_activity_instructions"
+            android:theme="@style/AppTheme.NoActionBar" /> <!-- Main Activity -->
         <activity android:name=".LoginActivity">
             <intent-filter>
 
@@ -33,9 +37,10 @@
         <activity android:name=".NewMedicineActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".EditMedicineActivity" />
+        <activity android:name=".EditDiaryActivity" />
         <activity android:name=".DiaryActivity" />
-        <activity android:name=".NotificationActivity"></activity>
-        <activity android:name=".NewDiaryActivity"></activity>
+        <activity android:name=".NotificationActivity" />
+        <activity android:name=".NewDiaryActivity" />
 
         <receiver
             android:name=".Reboot"

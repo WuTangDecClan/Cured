@@ -1,6 +1,7 @@
 package com.example.cured;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,18 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.MyViewHolder
         final String getDiary_desc = myDiary.get(i).getDiary_desc();
         final String getDiary_date = myDiary.get(i).getDiary_date();
         final String getDiary_key = myDiary.get(i).getDiary_key();
+
+        myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent aa = new Intent(context, EditDiaryActivity.class);
+                aa.putExtra("diary_title", getDiary_title);
+                aa.putExtra("diary_desc", getDiary_desc);
+                aa.putExtra("diary_date", getDiary_date);
+                aa.putExtra("diary_key", getDiary_key);
+                context.startActivity(aa);
+            }
+        });
 
 //        myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
 //            @Override

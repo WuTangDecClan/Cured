@@ -32,7 +32,7 @@ public class Navigation  {
 
    public void setN(){
 
-        final String[] items = {"Main", "New Medicine", "Diary list", "New Diary", "LogOut"};
+        final String[] items = {"Main", "New Medicine", "Diary list", "New Diary","Log Out", "Instructions"};
         ArrayAdapter adapter = new ArrayAdapter(context, R.layout.list, items);
 
         listview.setAdapter(adapter);
@@ -77,7 +77,7 @@ public class Navigation  {
                                .show();
                        break;
                    case 5:
-                       Intent m = new Intent(context, MyMedicine.class);
+                       Intent m = new Intent(context, InstructionActivity.class);
                        context.startActivity(m);
                        break;
                }

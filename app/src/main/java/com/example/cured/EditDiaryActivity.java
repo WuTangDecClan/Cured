@@ -21,35 +21,32 @@ import com.google.firebase.database.ValueEventListener;
 
 public class EditDiaryActivity extends AppCompatActivity {
 
-    EditText Diary_title, Diary_desc, Diary_date;
-    Button btnSaveChanges, btnDelete;
+    EditText titleDiary, dateDiary, descDiary;
+    Button btnSaveUpdate, btnDelete;
     DatabaseReference reference;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_diary);
 
+        titleDiary = findViewById(R.id.diary_title);
+        descDiary = findViewById(R.id.diary_desc);
+        dateDiary = findViewById(R.id.diary_date);
 
-        Diary_title = findViewById(R.id.diary_title);
-        Diary_desc = findViewById(R.id.diary_desc);
-        Diary_date = findViewById(R.id.diary_date);
-
-        btnSaveChanges = findViewById(R.id.btnSaveChanges);
+        btnSaveUpdate = findViewById(R.id.btnSaveChanges);
         btnDelete = findViewById(R.id.btnDelete);
 
-        //get value from previous page
-        Diary_title.setText(getIntent().getStringExtra("diary_title"));
-        Diary_desc.setText(getIntent().getStringExtra("diary_desc"));
-        Diary_date.setText(getIntent().getStringExtra("diary_date"));
+        //get a value from previous page
+        titleDiary.setText(getIntent().getStringExtra("diary_title"));
+        descDiary.setText(getIntent().getStringExtra("diary_desc"));
+        dateDiary.setText(getIntent().getStringExtra("diary_date"));
 
-        final String Diary_keykey = getIntent().getStringExtra("diary_key");
+        final String keykeyDiary = getIntent().getStringExtra("diary_key");
 
-        reference = FirebaseDatabase.getInstance().getReference().child("CuredApp").
-                child("DiaryApp" + Diary_keykey);
+        reference = FirebaseDatabase.getInstance().getReference().child("DiaryApp").
+                child("Diary" + keykeyDiary);
 
-        //delete item
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,10 +54,10 @@ public class EditDiaryActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
-                            Intent a = new Intent(EditDiaryActivity.this,MainActivity.class);
+                            Intent a = new Intent(EditDiaryActivity.this, DiaryActivity.class);
                             startActivity(a);
                         } else {
-                            Toast.makeText(getApplicationContext(), "Failure!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Not working!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -68,30 +65,27 @@ public class EditDiaryActivity extends AppCompatActivity {
         });
 
         //make an event for button
-        btnSaveChanges.setOnClickListener(new View.OnClickListener() {
+        btnSaveUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        dataSnapshot.getRef().child("diary_title").setValue(titleDiary.getText().toString());
+                        dataSnapshot.getRef().child("diary_desc").setValue(descDiary.getText().toString());
+                        dataSnapshot.getRef().child("diary_date").setValue(dateDiary.getText().toString());
+                        dataSnapshot.getRef().child("diary_key").setValue(keykeyDiary);
 
-                        dataSnapshot.getRef().child("diary_title").setValue(Diary_title.getText().toString());
-                        dataSnapshot.getRef().child("diary_desc").setValue(Diary_desc.getText().toString());
-                        dataSnapshot.getRef().child("diary_date").setValue(Diary_date.getText().toString());
-                        dataSnapshot.getRef().child("diary_key").setValue(Diary_keykey);
-
-                        Intent a = new Intent(EditDiaryActivity.this,MainActivity.class);
+                        Intent a = new Intent(EditDiaryActivity.this,DiaryActivity.class);
                         startActivity(a);
-
                     }
 
                     @Override
-                    public void onCancelled(DatabaseError databaseError) {
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
                     }
                 });
             }
         });
-
     }
 }
