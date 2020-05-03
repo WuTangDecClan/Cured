@@ -137,10 +137,17 @@
                 android:layout_marginTop="20dp"
                 android:gravity="center">
 
-                <ImageView
+                <com.facebook.login.widget.LoginButton
+                    android:id="@+id/login_button_facebook"
+                    android:layout_width="31dp"
+                    android:layout_height="wrap_content" />
+
+                <!--ImageView
+                    android:id="@+id/facebook_login_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_facebook" />
+                    android:onClick="onFLoginClick"
+                    android:src="@drawable/ic_facebook" /-->
 
                 <ImageView
                     android:layout_width="wrap_content"

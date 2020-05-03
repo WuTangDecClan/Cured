@@ -26,7 +26,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
+    implementation 'com.facebook.android:facebook-android-sdk:[4,5)' //facebook login
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'com.google.firebase:firebase-analytics:17.3.0'
     implementation 'com.google.firebase:firebase-auth:19.3.0'

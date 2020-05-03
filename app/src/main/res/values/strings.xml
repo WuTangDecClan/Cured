@@ -7,5 +7,7 @@
     <string name="choice1">Login or Sign up</string>
     <string name="login_email_hint" />
     <string name="login_password_hint" />
+    <string name="facebook_app_id">551406552187229</string>
+    <string name="fb_login_protocol_scheme">fb551406552187229</string>
     Log in or Sign up with
 </resources>
