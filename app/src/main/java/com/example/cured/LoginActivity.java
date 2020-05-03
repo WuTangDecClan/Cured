@@ -48,8 +48,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.login_new);
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
-        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
-        mAuth.signInWithCredential(credential);
 
         if (FirebaseAuth.getInstance().getCurrentUser() != null || isLoggedIn) { // If there are current user
             // Go to Main view
