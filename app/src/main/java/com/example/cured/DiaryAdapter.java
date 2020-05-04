@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -52,18 +53,6 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.MyViewHolder
             }
         });
 
-//        myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent aa = new Intent(context,EditTodoActivity.class);
-//                aa.putExtra("todo_title", getTodo_title);
-//                aa.putExtra("todo_desc", getTodo_desc);
-//                aa.putExtra("todo_date", getTodo_date);
-//                aa.putExtra("todo_key", getTodo_key);
-//                context.startActivity(aa);
-//            }
-//        });
-
     }
 
     @Override
@@ -74,12 +63,14 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.MyViewHolder
     class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView diary_title, diary_desc, diary_date, todo_key;
+        Switch switch1;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             diary_title = (TextView) itemView.findViewById(R.id.diary_title);
             diary_desc = (TextView) itemView.findViewById(R.id.diary_desc);
             diary_date = (TextView) itemView.findViewById(R.id.diary_date);
+            switch1 = (Switch) itemView.findViewById(R.id.switch1);
         }
     }
 
