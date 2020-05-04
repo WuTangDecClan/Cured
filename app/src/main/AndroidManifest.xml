@@ -61,6 +61,7 @@
         <activity android:name=".NotificationActivity"></activity>
         <activity android:name=".NewDiaryActivity"></activity>
         <activity android:name=".MedicineDisplay"></activity>
+        <activity android:name=".EditDiaryActivity"></activity>
 
         <receiver
             android:name=".Reboot"
