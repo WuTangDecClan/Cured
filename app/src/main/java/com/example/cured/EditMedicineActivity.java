@@ -1,6 +1,5 @@
 package com.example.cured;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -78,7 +77,7 @@ public class EditMedicineActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
-                            Intent a = new Intent(EditMedicineActivity.this,MainActivity.class);
+                            Intent a = new Intent(EditMedicineActivity.this,MedicineDisplay.class);
                             startActivity(a);
                         } else {
                             Toast.makeText(getApplicationContext(), "Failure!", Toast.LENGTH_SHORT).show();
@@ -113,7 +112,7 @@ public class EditMedicineActivity extends AppCompatActivity {
                         dataSnapshot.getRef().child("medicine_time").setValue(Medicine_time);
                         dataSnapshot.getRef().child("medicine_key").setValue(Medicine_keykey);
 
-                        Intent a = new Intent(EditMedicineActivity.this,MainActivity.class);
+                        Intent a = new Intent(EditMedicineActivity.this,MedicineDisplay.class);
                         startActivity(a);
 
                     }

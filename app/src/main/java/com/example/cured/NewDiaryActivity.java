@@ -45,6 +45,14 @@ public class NewDiaryActivity extends AppCompatActivity {
         btnSaveEntry = findViewById(R.id.btnSaveEntry);
         btnCancel = findViewById(R.id.btnCancel);
 
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(NewDiaryActivity.this, DiaryActivity.class);
+                startActivity(a);
+            }
+        });
+
         btnSaveEntry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

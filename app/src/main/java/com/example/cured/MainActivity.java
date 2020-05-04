@@ -8,31 +8,26 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 //import com.facebook.AccessToken;
 
 
-public class MainActivity extends AppCompatActivity implements callAlarm{
+public class MainActivity extends AppCompatActivity implements callAlarm {
     TextView titlepage, subtitlepage, endpage;
-    Button btnAddNew,btnAddDiary;
+    Button btnAddNew;
 
     DatabaseReference reference;
     RecyclerView medicine_intakes;
@@ -48,15 +43,15 @@ public class MainActivity extends AppCompatActivity implements callAlarm{
     ListView listview = null;
 
     @Override
-    public void call(int hour, int minute, String title, String dosage,String key){
+    public void call(int hour, int minute, String title, String dosage, String key) {
         Intent i = new Intent(MainActivity.this, NotificationActivity.class);
-        i.putExtra("hour",hour);
-        i.putExtra("minute",minute);
-        i.putExtra("title",title);
-        i.putExtra("dosage",dosage);
-        i.putExtra("key",key);
-        i.putExtra("cancel",false);
-        Log.e("iIntent",hour+title+dosage+minute+key);
+        i.putExtra("hour", hour);
+        i.putExtra("minute", minute);
+        i.putExtra("title", title);
+        i.putExtra("dosage", dosage);
+        i.putExtra("key", key);
+        i.putExtra("cancel", false);
+        Log.e("iIntent", hour + title + dosage + minute + key);
 
         startActivity(i);
     }
@@ -72,8 +67,8 @@ public class MainActivity extends AppCompatActivity implements callAlarm{
         //handleFacebookAccessToken(accessToken);
 
         //if (FirebaseAuth.getInstance().getCurrentUser() == null && !isLoggedIn) { // If there are no current user
-            // Go to Login view
-      //      startLoginActivity();
+        // Go to Login view
+        //      startLoginActivity();
         //}
 
         final String[] items = {"Add", "Edit", "Diary", "Main", "LogOut"};
@@ -81,9 +76,8 @@ public class MainActivity extends AppCompatActivity implements callAlarm{
 
         listview = (ListView) findViewById(R.id.drawerList);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
-        navigation = new Navigation(this,listview,drawer);
+        navigation = new Navigation(this, listview, drawer);
         navigation.setN();
-        
 
 
         //setContentView(R.layout.activity_design);
@@ -99,8 +93,8 @@ public class MainActivity extends AppCompatActivity implements callAlarm{
 
 
         //if (FirebaseAuth.getInstance().getCurrentUser() == null) { // If there are no current user
-            // Go to Login view or Sign up view or some other view..
-            //FirebaseAuth.getInstance().signOut(); // This is logout method
+        // Go to Login view or Sign up view or some other view..
+        //FirebaseAuth.getInstance().signOut(); // This is logout method
         //}
 
 
@@ -121,43 +115,64 @@ public class MainActivity extends AppCompatActivity implements callAlarm{
             }
         });
 
-        // working with data
-        medicine_intakes = findViewById(R.id.medicine_intakes);
-        medicine_intakes.setLayoutManager(new LinearLayoutManager(this));
-        list = new ArrayList<MyMedicine>();
+        //set the visuals on click
 
-        // get data from firebase
-        reference = FirebaseDatabase.getInstance().getReference().child("CuredApp");
-        medicineAdapter = new MedicineAdapter(MainActivity.this, list, this);
-         final callAlarm a = this;
-        reference.addValueEventListener(new ValueEventListener() {
+        LinearLayout medicine = (LinearLayout )findViewById(R.id.medicine);
+        medicine.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // set code to retrieve data and replace layout
-                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    MyMedicine p = dataSnapshot1.getValue(MyMedicine.class);
-                    if(p.medicine_uid != null) { // Each user can see their own medicine only.
-                        if (p.medicine_uid.equals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
-                            list.add(p);
-                    }
-                }
-                medicineAdapter = new MedicineAdapter(MainActivity.this, list,a);
-                medicine_intakes.setAdapter(medicineAdapter);
-                medicineAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // set code to show an error
-                Toast.makeText(getApplicationContext(), "No Data", Toast.LENGTH_SHORT).show();
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,MedicineDisplay.class);
+                startActivity(intent );
             }
         });
+
+        LinearLayout diary = (LinearLayout )findViewById(R.id.diary);
+        diary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,DiaryActivity.class);
+                startActivity(intent );
+            }
+        });
+
+        // working with data
+        //medicine_intakes = findViewById(R.id.medicine_intakes);
+//        medicine_intakes.setLayoutManager(new LinearLayoutManager(this));
+////        list = new ArrayList<MyMedicine>();
+////
+////        // get data from firebase
+////        reference = FirebaseDatabase.getInstance().getReference().child("CuredApp");
+////        medicineAdapter = new MedicineAdapter(MainActivity.this, list, this);
+////        final callAlarm a = this;
+////        reference.addValueEventListener(new ValueEventListener() {
+////            @Override
+////            public void onDataChange(DataSnapshot dataSnapshot) {
+////                // set code to retrieve data and replace layout
+////                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+////                    MyMedicine p = dataSnapshot1.getValue(MyMedicine.class);
+////                    if (p.medicine_uid != null) { // Each user can see their own medicine only.
+////                        if (p.medicine_uid.equals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
+////                            list.add(p);
+////                    }
+////                }
+////                medicineAdapter = new MedicineAdapter(MainActivity.this, list, a);
+////                medicine_intakes.setAdapter(medicineAdapter);
+////                medicineAdapter.notifyDataSetChanged();
+////            }
+////
+////            @Override
+////            public void onCancelled(DatabaseError databaseError) {
+////                // set code to show an error
+////                Toast.makeText(getApplicationContext(), "No Data", Toast.LENGTH_SHORT).show();
+////            }
+////        });
     }
 
-    private void startLoginActivity(){
+    private void startLoginActivity() {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
+}
 
 
 //    private void handleFacebookAccessToken(AccessToken token) {
@@ -180,7 +195,6 @@ public class MainActivity extends AppCompatActivity implements callAlarm{
 //                });
 //    }
 
-}
 
 // SPLASH SCREEN CODE
 //    private static int SPLASH_SCREEN = 5000;

@@ -100,7 +100,7 @@
                 android:textColorHint="#B5B5B5"
                 android:maxLength="25"
                 android:textColor="@color/colorPrimaryDark"
-                android:hint="How to?"
+                android:hint="Specify the dose"
                 android:layout_width="match_parent"
                 android:layout_height="50dp" />
 
