@@ -18,6 +18,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class Navigation  {
     Context context;
     ListView listview;
@@ -64,6 +68,7 @@ public class Navigation  {
                                .setTitle("logout").setMessage("Do you want to logout?")
                                .setPositiveButton("LogOut", new DialogInterface.OnClickListener() {
                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                       FirebaseAuth.getInstance().signOut();
                                        Intent i = new Intent(context, LoginActivity.class);
                                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
                                        context.startActivity(i);

@@ -22,7 +22,14 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.facebook.AccessToken;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -69,7 +76,11 @@ public class MainActivity extends AppCompatActivity implements callAlarm{
 
         setContentView(R.layout.activity);
 
-        if (FirebaseAuth.getInstance().getCurrentUser() == null) { // If there are no current user
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+        //handleFacebookAccessToken(accessToken);
+
+        if (FirebaseAuth.getInstance().getCurrentUser() == null && !isLoggedIn) { // If there are no current user
             // Go to Login view
             startLoginActivity();
         }
@@ -96,10 +107,10 @@ public class MainActivity extends AppCompatActivity implements callAlarm{
         });
 
 
-        if (FirebaseAuth.getInstance().getCurrentUser() == null) { // If there are no current user
+        //if (FirebaseAuth.getInstance().getCurrentUser() == null) { // If there are no current user
             // Go to Login view or Sign up view or some other view..
             //FirebaseAuth.getInstance().signOut(); // This is logout method
-        }
+        //}
 
 
         // import font
@@ -155,6 +166,27 @@ public class MainActivity extends AppCompatActivity implements callAlarm{
     private void startLoginActivity(){
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+    }
+
+
+    private void handleFacebookAccessToken(AccessToken token) {
+        Log.d(TAG, "handleFacebookAccessToken:" + token);
+
+        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithCredential:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+                        }
+                    }
+                });
     }
 
 }
