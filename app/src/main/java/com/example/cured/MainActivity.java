@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements callAlarm {
 //              startLoginActivity();
 //        }
 
-        final String[] items = {"Add", "Edit", "Diary", "Main", "LogOut"};
+        final String[] items = {"Main", "Medicines", "Diary", "LogOut", "Instructions"};
         ArrayAdapter adapter = new ArrayAdapter(this, R.layout.list, items);
 
         listview = (ListView) findViewById(R.id.drawerList);
