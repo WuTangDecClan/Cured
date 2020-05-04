@@ -62,14 +62,14 @@ public class MainActivity extends AppCompatActivity implements callAlarm {
 
         setContentView(R.layout.activity);
 
-        //AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        //boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
-        //handleFacebookAccessToken(accessToken);
-
-        //if (FirebaseAuth.getInstance().getCurrentUser() == null && !isLoggedIn) { // If there are no current user
-        // Go to Login view
-        //      startLoginActivity();
-        //}
+//        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+//        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+//        handleFacebookAccessToken(accessToken);
+//
+//        if (FirebaseAuth.getInstance().getCurrentUser() == null && !isLoggedIn) { // If there are no current user
+//         Go to Login view
+//              startLoginActivity();
+//        }
 
         final String[] items = {"Add", "Edit", "Diary", "Main", "LogOut"};
         ArrayAdapter adapter = new ArrayAdapter(this, R.layout.list, items);
@@ -134,38 +134,6 @@ public class MainActivity extends AppCompatActivity implements callAlarm {
                 startActivity(intent );
             }
         });
-
-        // working with data
-        //medicine_intakes = findViewById(R.id.medicine_intakes);
-//        medicine_intakes.setLayoutManager(new LinearLayoutManager(this));
-////        list = new ArrayList<MyMedicine>();
-////
-////        // get data from firebase
-////        reference = FirebaseDatabase.getInstance().getReference().child("CuredApp");
-////        medicineAdapter = new MedicineAdapter(MainActivity.this, list, this);
-////        final callAlarm a = this;
-////        reference.addValueEventListener(new ValueEventListener() {
-////            @Override
-////            public void onDataChange(DataSnapshot dataSnapshot) {
-////                // set code to retrieve data and replace layout
-////                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-////                    MyMedicine p = dataSnapshot1.getValue(MyMedicine.class);
-////                    if (p.medicine_uid != null) { // Each user can see their own medicine only.
-////                        if (p.medicine_uid.equals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
-////                            list.add(p);
-////                    }
-////                }
-////                medicineAdapter = new MedicineAdapter(MainActivity.this, list, a);
-////                medicine_intakes.setAdapter(medicineAdapter);
-////                medicineAdapter.notifyDataSetChanged();
-////            }
-////
-////            @Override
-////            public void onCancelled(DatabaseError databaseError) {
-////                // set code to show an error
-////                Toast.makeText(getApplicationContext(), "No Data", Toast.LENGTH_SHORT).show();
-////            }
-////        });
     }
 
     private void startLoginActivity() {
