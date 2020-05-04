@@ -7,13 +7,13 @@
     <CalendarView
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="377dp" />
 
     <Button
         android:id="@+id/btnAddNew"
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:layout_marginTop="-35dp"
+        android:layout_marginTop="-55dp"
         android:layout_marginLeft="350dp"
         android:background="@drawable/bgbtnnew"
         android:text="+"
@@ -21,15 +21,169 @@
         android:textColor="#FFF"
         android:textSize="30sp" />
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/medicine_intakes"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="16dp">
+    android:orientation="horizontal"
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="10dp"
+    android:layout_height="100dp"
+    android:background="@drawable/bg_medicine">
 
-    </androidx.recyclerview.widget.RecyclerView>
+
+    <LinearLayout
+        android:layout_width="246dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/medicine_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="left"
+            android:text="10 days strike."
+            android:textColor="#FFCE3B"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/medicine_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Congradulations! You received a milestone badge."
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="60dp"
+                android:gravity="right"
+                android:src="@drawable/trophy" />
+
+        </LinearLayout>
+
+
+
+
+</LinearLayout>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:layout_height="100dp"
+        android:background="@drawable/bg_medicine">
+
+
+        <LinearLayout
+            android:layout_width="246dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="left"
+                android:text="Scheduled for today."
+                android:textColor="#FFEB3B"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Your medicine schedule."
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="60dp"
+                android:gravity="right"
+                android:src="@drawable/medicine" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:layout_height="100dp"
+        android:background="@drawable/bg_medicine">
+
+
+        <LinearLayout
+            android:layout_width="246dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="left"
+                android:text="Your health diary."
+                android:textColor="#FFEB3B"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="How are you feeling today?"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="60dp"
+                android:gravity="right"
+                android:src="@drawable/diary1" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/medicine_intakes"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginLeft="16dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_marginRight="16dp">-->
+
+<!--    </androidx.recyclerview.widget.RecyclerView>-->
 
 </LinearLayout>
