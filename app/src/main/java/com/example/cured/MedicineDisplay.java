@@ -5,45 +5,53 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CalendarView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class MedicineDisplay extends AppCompatActivity implements callAlarm{
+//import com.facebook.AccessToken;
+
+
+public class MedicineDisplay extends AppCompatActivity implements callAlarm {
     TextView titlepage, subtitlepage, endpage;
-    Button btnAddNew, btnCancel;
+    Button btnAddNew;
 
     DatabaseReference reference;
     RecyclerView medicine_intakes;
     ArrayList<MyMedicine> list;
     MedicineAdapter medicineAdapter;
+    Navigation navigation;
 
+    private FirebaseAuth mAuth;
 
+    private static final String TAG = "MedicineDisplay";
+
+    private CalendarView mCalendarView;
     ListView listview = null;
 
     @Override
-    public void call(int hour, int minute, String title, String dosage,String key){
+    public void call(int hour, int minute, String title, String dosage, String key) {
         Intent i = new Intent(MedicineDisplay.this, NotificationActivity.class);
-        i.putExtra("hour",hour);
-        i.putExtra("minute",minute);
-        i.putExtra("title",title);
-        i.putExtra("dosage",dosage);
-        i.putExtra("key",key);
-        i.putExtra("cancel",false);
-        Log.e("iIntent",hour+title+dosage+minute+key);
+        i.putExtra("hour", hour);
+        i.putExtra("minute", minute);
+        i.putExtra("title", title);
+        i.putExtra("dosage", dosage);
+        i.putExtra("key", key);
+        i.putExtra("cancel", false);
+        Log.e("iIntent", hour + title + dosage + minute + key);
 
         startActivity(i);
     }
@@ -51,25 +59,54 @@ public class MedicineDisplay extends AppCompatActivity implements callAlarm{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.medicine_display);
 
-        titlepage = findViewById(R.id.titlepage);
-        subtitlepage = findViewById(R.id.subtitlepage);
-        endpage = findViewById(R.id.endpage);
+        setContentView(R.layout.activity);
 
-        btnAddNew = findViewById(R.id.btnAddNew);
-        btnAddNew = findViewById(R.id.btnCancel);
+//        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+//        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+//        handleFacebookAccessToken(accessToken);
+//
+//        if (FirebaseAuth.getInstance().getCurrentUser() == null && !isLoggedIn) { // If there are no current user
+//         Go to Login view
+//              startLoginActivity();
+//        }
+
+        final String[] items = {"Main", "Medicines", "Diary", "Instructions", "LogOut"};
+        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.list, items);
+
+        listview = (ListView) findViewById(R.id.drawerList);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
+        navigation = new Navigation(this, listview, drawer);
+        navigation.setN();
+
+
+        //setContentView(R.layout.activity_design);
+        mCalendarView = (CalendarView) findViewById(R.id.calendarView);
+
+        mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                String date = dayOfMonth + "/" + month + "/" + year;
+                Log.d(TAG, "date is :" + date);
+            }
+        });
+
+
+        //if (FirebaseAuth.getInstance().getCurrentUser() == null) { // If there are no current user
+        // Go to Login view or Sign up view or some other view..
+        //FirebaseAuth.getInstance().signOut(); // This is logout method
+        //}
+
 
         // import font
-        Typeface MLight = Typeface.createFromAsset(getAssets(), "fonts/ML.ttf");
-        Typeface MMedium = Typeface.createFromAsset(getAssets(), "fonts/MM.ttf");
+        Typeface MLight = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
+        Typeface MMedium = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Bold.ttf");
 
-        // customize font
-        titlepage.setTypeface(MMedium);
-        subtitlepage.setTypeface(MLight);
-        endpage.setTypeface(MLight);
+
+        btnAddNew = findViewById(R.id.btnAddNew);
 
         btnAddNew.setTypeface(MLight);
+
 
         btnAddNew.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,42 +116,75 @@ public class MedicineDisplay extends AppCompatActivity implements callAlarm{
             }
         });
 
-        btnCancel.setOnClickListener(new View.OnClickListener() {
+        //set the visuals on click
+
+        LinearLayout medicine = (LinearLayout )findViewById(R.id.medicine);
+        medicine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent a = new Intent(MedicineDisplay.this, NewMedicineActivity.class);
-                startActivity(a);
+                Intent intent = new Intent(MedicineDisplay.this,MainActivity.class);
+                startActivity(intent );
             }
         });
 
-        // working with data
-        medicine_intakes = findViewById(R.id.medicine_intakes);
-        medicine_intakes.setLayoutManager(new LinearLayoutManager(this));
-        list = new ArrayList<MyMedicine>();
-
-        // get data from firebase
-        reference = FirebaseDatabase.getInstance().getReference().child("CuredApp");
-        medicineAdapter = new MedicineAdapter(MedicineDisplay.this, list, this);
-        final callAlarm a = this;
-        reference.addValueEventListener(new ValueEventListener() {
+        LinearLayout diary = (LinearLayout )findViewById(R.id.diary);
+        diary.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // set code to retrieve data and replace layout
-                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren())
-                {
-                    MyMedicine p = dataSnapshot1.getValue(MyMedicine.class);
-                    list.add(p);
-                }
-                medicineAdapter = new MedicineAdapter(MedicineDisplay.this, list, a);
-                medicine_intakes.setAdapter(medicineAdapter);
-                medicineAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // set code to show an error
-                Toast.makeText(getApplicationContext(), "No Data", Toast.LENGTH_SHORT).show();
+            public void onClick(View v) {
+                Intent intent = new Intent(MedicineDisplay.this,DiaryActivity.class);
+                startActivity(intent );
             }
         });
     }
+
+    private void startLoginActivity() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
 }
+
+
+//    private void handleFacebookAccessToken(AccessToken token) {
+//        Log.d(TAG, "handleFacebookAccessToken:" + token);
+//
+//        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+//        mAuth.signInWithCredential(credential)
+//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if (task.isSuccessful()) {
+//                            // Sign in success, update UI with the signed-in user's information
+//                            Log.d(TAG, "signInWithCredential:success");
+//                            FirebaseUser user = mAuth.getCurrentUser();
+//                        } else {
+//                            // If sign in fails, display a message to the user.
+//                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+//                        }
+//                    }
+//                });
+//    }
+
+
+// SPLASH SCREEN CODE
+//    private static int SPLASH_SCREEN = 5000;
+//
+//    @Override
+//    protected void onCreate(@Nullable Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        setContentView(R.layout.activity_main);
+//
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                Intent intent = new Intent(MainActivity.this, Design.class);
+//                startActivity(intent);
+//                finish();
+//            }
+//        },SPLASH_SCREEN);
+//    }
+
+
+
+
+

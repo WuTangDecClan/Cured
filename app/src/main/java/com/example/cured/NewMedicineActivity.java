@@ -55,7 +55,7 @@ public class NewMedicineActivity  extends AppCompatActivity{
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent a = new Intent(NewMedicineActivity.this, MedicineDisplay.class);
+                Intent a = new Intent(NewMedicineActivity.this, MainActivity.class);
                 startActivity(a);
             }
         });
@@ -88,7 +88,7 @@ public class NewMedicineActivity  extends AppCompatActivity{
                         dataSnapshot.getRef().child("medicine_key").setValue(medicine_key);
                         dataSnapshot.getRef().child("medicine_uid").setValue(medicine_uid);
 
-                        Intent a = new Intent(NewMedicineActivity.this,MedicineDisplay.class);
+                        Intent a = new Intent(NewMedicineActivity.this,MainActivity.class);
                         startActivity(a);
 
                     }
@@ -102,8 +102,8 @@ public class NewMedicineActivity  extends AppCompatActivity{
         });
 
         // import font
-        Typeface MLight = Typeface.createFromAsset(getAssets(), "fonts/ML.ttf");
-        Typeface MMedium = Typeface.createFromAsset(getAssets(), "fonts/MM.ttf");
+        Typeface MLight = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
+        Typeface MMedium = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Bold.ttf");
 
         // customize font
         titlepage.setTypeface(MMedium);

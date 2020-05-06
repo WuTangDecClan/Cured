@@ -28,7 +28,7 @@ public class Navigation  {
 
    public void setN(){
 
-        final String[] items = {"Main", "Medicines", "Diary","Log Out", "Instructions"};
+        final String[] items = {"Medicines", "Calendar", "Diary","Instructions", "Logout"};
         ArrayAdapter adapter = new ArrayAdapter(context, R.layout.list, items);
 
         listview.setAdapter(adapter);
@@ -39,11 +39,11 @@ public class Navigation  {
            public void onItemClick(AdapterView parent, View v, int position, long id) {
 
                switch (position) {
-                   case 0: // Main
+                   case 0: // Medicines
                        Intent d = new Intent(context, MainActivity.class);
                        context.startActivity(d);
                        break;
-                   case 1: // Medicines
+                   case 1: // Calendar
                        Intent a = new Intent(context, MedicineDisplay.class);
                        context.startActivity(a);
                        break;
@@ -51,7 +51,13 @@ public class Navigation  {
                        Intent b = new Intent(context, DiaryActivity.class);
                        context.startActivity(b);
                        break;
-                   case 3: //Logout
+
+                   case 3: //instructions
+                       Intent m = new Intent(context, InstructionActivity.class);
+                       context.startActivity(m);
+                       break;
+
+                       case 4: //Logout
                        new AlertDialog.Builder(context)
                                .setTitle("logout").setMessage("Do you want to logout?")
                                .setPositiveButton("LogOut", new DialogInterface.OnClickListener() {
@@ -68,10 +74,6 @@ public class Navigation  {
                                    }
                                })
                                .show();
-                       break;
-                   case 4:
-                       Intent m = new Intent(context, InstructionActivity.class);
-                       context.startActivity(m);
                        break;
                }
                drawer.closeDrawer(Gravity.LEFT);

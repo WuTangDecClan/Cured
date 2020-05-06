@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,7 +25,6 @@ public class NewDiaryActivity extends AppCompatActivity {
     DatabaseReference reference;
     Integer diaryNum = new Random().nextInt();
     String diary_key = Integer.toString(diaryNum);
-    String diary_uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +65,6 @@ public class NewDiaryActivity extends AppCompatActivity {
                         dataSnapshot.getRef().child("diary_desc").setValue(diary_desc.getText().toString());
                         dataSnapshot.getRef().child("diary_date").setValue(diary_date.getText().toString());
                         dataSnapshot.getRef().child("diary_key").setValue(diary_key);
-                        dataSnapshot.getRef().child("diary_uid").setValue(diary_uid);
 
                         Intent a = new Intent(NewDiaryActivity.this,DiaryActivity.class);
                         startActivity(a);
@@ -83,8 +80,8 @@ public class NewDiaryActivity extends AppCompatActivity {
         });
 
         // import font
-        Typeface MLight = Typeface.createFromAsset(getAssets(), "fonts/ML.ttf");
-        Typeface MMedium = Typeface.createFromAsset(getAssets(), "fonts/MM.ttf");
+        Typeface MLight = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
+        Typeface MMedium = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Bold.ttf");
 
         // customize font
         titlepage.setTypeface(MMedium);

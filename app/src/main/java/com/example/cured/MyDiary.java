@@ -1,25 +1,24 @@
 package com.example.cured;
 
 public class MyDiary {
-    String diary_title, diary_desc, diary_date, diary_key, diary_uid;
+    String diary_title, diary_desc, diary_date, diary_key;
 
     public MyDiary(){
 
     }
 
-    public MyDiary(String diary_title, String diary_desc, String diary_date, String diary_key, String diary_uid) {
+    public MyDiary(String diary_title, String diary_desc, String diary_date, String diary_key) {
         this.diary_title = diary_title;
         this.diary_desc = diary_desc;
         this.diary_date = diary_date;
         this.diary_key = diary_key;
-        this.diary_uid = diary_uid;
     }
 
     public String getDiary_key() {
         return diary_key;
     }
 
-    public void setDiary_key(String medicine_key) {
+    public void setDiary_key(String diary_key) {
         this.diary_key = diary_key;
     }
 
@@ -47,11 +46,4 @@ public class MyDiary {
         this.diary_date = diary_date;
     }
 
-    public String getDiary_uid() {
-        return diary_uid;
-    }
-
-    public void setDiary_uid(String diary_uid) {
-        this.diary_date = diary_uid;
-    }
 }

@@ -50,8 +50,8 @@ public class DiaryActivity extends AppCompatActivity {
         btnAddDiary = findViewById(R.id.btnAddDiary);
 
         // import font
-        Typeface MLight = Typeface.createFromAsset(getAssets(), "fonts/ML.ttf");
-        Typeface MMedium = Typeface.createFromAsset(getAssets(), "fonts/MM.ttf");
+        Typeface MLight = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
+        Typeface MMedium = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Bold.ttf");
 
         // customize font
         titlepage.setTypeface(MMedium);
