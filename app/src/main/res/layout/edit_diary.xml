@@ -40,7 +40,7 @@
                 android:textColor="#4A4E6A"
                 android:layout_marginTop="8dp"
                 android:textAlignment="center"
-                android:text="Not happy? Make whatever changes!"
+                android:text="Not happy? Make changes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -74,7 +74,7 @@
                     android:id="@+id/addtitle"
                     android:textSize="18sp"
                     android:textColor="@color/colorPrimaryDark"
-                    android:text="Title"
+                    android:text="Rating:"
                     android:layout_marginBottom="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -86,7 +86,7 @@
                     android:paddingLeft="12dp"
                     android:textColorHint="#9E9E9E"
                     android:textColor="@color/colorPrimaryDark"
-                    android:hint="What is the new Diary title?"
+                    android:hint="What is the updated rating?"
                     android:layout_width="match_parent"
                     android:layout_height="55dp" />
 
@@ -104,7 +104,7 @@
                     android:id="@+id/adddesc"
                     android:textSize="18sp"
                     android:textColor="@color/colorPrimaryDark"
-                    android:text="Dosage"
+                    android:text="Description:"
                     android:layout_marginBottom="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -136,7 +136,7 @@
                     android:id="@+id/adddate"
                     android:textSize="18sp"
                     android:textColor="@color/colorPrimaryDark"
-                    android:text="Time"
+                    android:text="Date:"
                     android:layout_marginBottom="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
