@@ -12,7 +12,7 @@ public class MyMedicine {
         this.medicine_dose = medicine_dose;
         this.medicine_time = medicine_time;
         this.medicine_key = medicine_key;
-        this.medicine_uid = medicine_uid;
+//        this.medicine_uid = medicine_uid;
     }
 
     public String getMedicine_key() {
@@ -47,11 +47,11 @@ public class MyMedicine {
         this.medicine_time = medicine_time;
     }
 
-    public String getMedicine_uid() {
-        return medicine_uid;
-    }
-
-    public void setMedicine_uid(String medicine_uid) {
-        this.medicine_uid = medicine_uid;
-    }
+//    public String getMedicine_uid() {
+//        return medicine_uid;
+//    }
+//
+//    public void setMedicine_uid(String medicine_uid) {
+//        this.medicine_uid = medicine_uid;
+//    }
 }
