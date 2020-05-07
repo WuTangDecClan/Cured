@@ -84,7 +84,7 @@
                 android:paddingLeft="12dp"
                 android:textColorHint="#9E9E9E"
                 android:textColor="@color/colorPrimaryDark"
-                android:hint="Rate how you feel out of 5, please"
+                android:hint="Rate how you feel out of 5!"
                 android:layout_width="match_parent"
                 android:layout_height="55dp" />
 
@@ -112,7 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="284dp"
                 android:background="@drawable/bginputtask"
-                android:hint="Describe here how you felt"
+                android:hint="How are you?"
                 android:inputType="textMultiLine"
                 android:gravity="start"
                 android:maxLength="200"
@@ -146,7 +146,7 @@
                 android:paddingLeft="12dp"
                 android:textColorHint="#B5B5B5"
                 android:textColor="@color/colorPrimaryDark"
-                android:hint="e.g 03/05/2020"
+                android:hint="e.g 03.05.2020 or 03/05/2020"
                 android:layout_width="match_parent"
                 android:layout_height="55dp" />
 
@@ -163,7 +163,7 @@
         android:text="Create Now"
         android:textColor="#FFF"
         android:textAllCaps="false"
-        android:background="@drawable/bgbtncreate"
+        android:background="@drawable/bg_medicine_btn"
         android:textSize="22sp"
         android:layout_width="match_parent"
         android:layout_height="55dp" />

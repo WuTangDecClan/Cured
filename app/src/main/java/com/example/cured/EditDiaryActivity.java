@@ -56,6 +56,7 @@ public class EditDiaryActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
+                            reference.removeValue();
                             Intent a = new Intent(EditDiaryActivity.this,DiaryActivity.class);
                             startActivity(a);
                         } else {

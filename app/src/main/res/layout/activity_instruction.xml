@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:fontFamily="sans-serif-condensed-medium"
-            android:text="Instructions"
+            android:text="Instructions to get you started"
             android:textColor="#FF009688"
             android:textColorHighlight="#009688"
             android:textSize="32sp"
@@ -140,6 +140,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="  Click for Manual  "
+            android:textColor="#FFF"
+            android:textAllCaps="false"
+            android:background="@drawable/bg_medicine_btn"
+            app:layout_constraintBottom_toTopOf="@+id/imageView4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView5"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

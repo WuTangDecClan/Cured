@@ -34,7 +34,7 @@
                     android:layout_marginTop="20dp"
                     android:textSize="32sp"
                     android:textColor="#FFF"
-                    android:text="Medicine list."
+                    android:text="Medicine List"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -43,7 +43,7 @@
                     android:textSize="18sp"
                     android:textColor="#4A4E6A"
                     android:layout_marginTop="8dp"
-                    android:text="Medications scheduled for today."
+                    android:text="Touch the left edge of the screen and\nslide to the right to open the Menu!"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 

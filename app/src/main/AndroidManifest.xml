@@ -59,6 +59,7 @@
         <activity android:name=".EditMedicineActivity" />
         <activity android:name=".DiaryActivity" />
         <activity android:name=".NotificationActivity"></activity>
+        <activity android:name=".InstructionActivity"></activity>
         <activity android:name=".NewDiaryActivity"></activity>
         <activity android:name=".MedicineDisplay"></activity>
         <activity android:name=".EditDiaryActivity"></activity>
